@@ -1,0 +1,121 @@
+<div class="column-block three-column-left-b" id="stcl_1" style="float:left; height:315px;">
+    <div class="external_system column-block-header" style="margin-bottom:0px;">
+        <div class="tablist h3-2" id="dateTime">
+            <ul>
+                <li value="1" class="selected" guide-step="5">我的考勤</li>
+                <span style="color: rgb(202, 212, 229); line-height: 43px; float: left; --darkreader-inline-color:#cad8e5;" data-darkreader-inline-color="">|</span>
+                <li value="2" guide-step="6" class="">我的工时</li>
+            </ul>
+        </div>
+    </div>
+    <div id="tab-con-17">
+        <!--我的考勤 -->
+        <div class="tcontent" id="tab-con-17-1" style="display: block; padding-bottom: 5px;">
+            <table width="100%" border="0" id="Calendar">
+                <tbody><tr align="center">
+                    <td class="hand" align="center" width="33%" onclick="Cal.toCurrentMonth();" title="今天" style="border-bottom: 1px solid rgb(228, 225, 225); --darkreader-inline-border-bottom:#3d3737;" data-darkreader-inline-border-bottom="">
+                        <span id="currentDay">19</span> <br>
+                        <span id="currentWeekDay">星期六</span>
+                    </td>
+                    <td align="center" style="border-left: 1px solid rgb(228, 225, 225); border-bottom: 1px solid rgb(228, 225, 225); --darkreader-inline-border-left:#3d3737; --darkreader-inline-border-bottom:#3d3737;" data-darkreader-inline-border-left="" data-darkreader-inline-border-bottom="">
+                        <div style="display: inline-block;">
+                            <div class="LeftArrow" id="prevbtn" title="上一个月" onclick="Cal.toPrevMonth();"></div>
+                            <div class="changeMonth " id="showDate">2019年01月</div>
+                            <div class="RightArrow" id="nextbtn" title="下一个月" onclick="Cal.toNextMonth();"></div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <table id="LDay" width="100%">
+                            <tbody>
+                            <tr>
+                                <th>日</th>
+                                <th>一</th>
+                                <th>二</th>
+                                <th>三</th>
+                                <th>四</th>
+                                <th>五</th>
+                                <th>六</th>
+                            </tr>
+                            <tr><td class="notSelectMonthDay" data="20181230">30</td><td class="notSelectMonthDay" data="20181231">31</td><td class="" data="20190101">1</td><td class="hashPlanDiv" data="20190102"><a href="###" onclick="Cal.toDayDetail(5375042)">2</a></td><td class="hashPlanDiv" data="20190103"><a href="###" onclick="Cal.toDayDetail(5375040)">3</a></td><td class="hashPlanDiv" data="20190104"><a href="###" onclick="Cal.toDayDetail(5375039)">4</a></td><td class="" data="20190105">5</td></tr>
+                            <tr><td class="" data="20190106">6</td><td class="hashPlanDiv" data="20190107"><a href="###" onclick="Cal.toDayDetail(5375046)">7</a></td><td class="hashPlanDiv" data="20190108"><a href="###" onclick="Cal.toDayDetail(5375045)">8</a></td><td class="hashPlanDiv" data="20190109"><a href="###" onclick="Cal.toDayDetail(5375043)">9</a></td><td class="hashPlanDiv" data="20190110"><a href="###" onclick="Cal.toDayDetail(5375041)">10</a></td><td class="hashPlanDiv" data="20190111"><a href="###" onclick="Cal.toDayDetail(5375044)">11</a></td><td class="" data="20190112">12</td></tr>
+                            <tr><td class="" data="20190113">13</td><td class="" data="20190114">14</td><td class="" data="20190115">15</td><td class="" data="20190116">16</td><td class="" data="20190117">17</td><td class="" data="20190118">18</td><td class="red" data="20190119">19</td></tr>
+                            <tr><td class="" data="20190120">20</td><td class="" data="20190121">21</td><td class="" data="20190122">22</td><td class="" data="20190123">23</td><td class="" data="20190124">24</td><td class="" data="20190125">25</td><td class="" data="20190126">26</td></tr>
+                            <tr><td class="" data="20190127">27</td><td class="" data="20190128">28</td><td class="" data="20190129">29</td><td class="" data="20190130">30</td><td class="" data="20190131">31</td><td class="notSelectMonthDay" data="20190201">1</td><td class="notSelectMonthDay" data="20190202">2</td></tr>
+                            <tr><td class="notSelectMonthDay" data="20190203">3</td><td class="notSelectMonthDay" data="20190204">4</td><td class="notSelectMonthDay" data="20190205">5</td><td class="notSelectMonthDay" data="20190206">6</td><td class="notSelectMonthDay" data="20190207">7</td><td class="notSelectMonthDay" data="20190208">8</td><td class="notSelectMonthDay" data="20190209">9</td></tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;width: 50%;">
+                        <img src="../css/images/newIndex/red_circle_wev8.png" width="15" height="15" style="vertical-align:middle;">
+                        &nbsp;&nbsp;&nbsp;异常
+                    </td>
+                    <td style="text-align: center; width: 50%;">
+                        <img src="../css/images/newIndex/green_circle_wev8.png" width="15" height="15" style="vertical-align:middle;">
+                        &nbsp;&nbsp;&nbsp;正常
+                    </td>
+                </tr>
+                </tbody></table>
+        </div>
+
+        <!--我的工时 -->
+        <div class="tcontent" id="tab-con-17-2" style="padding-bottom: 5px; display: none;">
+            <table width="100%" border="0" id="Calendar">
+                <tbody><tr align="center">
+                    <td class="hand" align="center" width="33%" onclick="Cal.toCurrentMonth();" title="今天" style="border-bottom: 1px solid rgb(228, 225, 225); --darkreader-inline-border-bottom:#3d3737;" data-darkreader-inline-border-bottom="">
+                        <span id="currentDay">19</span> <br>
+                        <span id="currentWeekDay">星期六</span>
+                    </td>
+                    <td align="center" style="border-left: 1px solid rgb(228, 225, 225); border-bottom: 1px solid rgb(228, 225, 225); --darkreader-inline-border-left:#3d3737; --darkreader-inline-border-bottom:#3d3737;" data-darkreader-inline-border-left="" data-darkreader-inline-border-bottom="">
+                        <div style="display: inline-block;">
+                            <div class="LeftArrow" id="prevbtn" title="上一个月" onclick="Cal.toPrevMonth();"></div>
+                            <div class="changeMonth " id="showDate">2019年01月</div><input type="hidden" id="workMonth" value="2019-01">
+                            <div class="RightArrow" id="nextbtn" title="下一个月" onclick="Cal.toNextMonth();"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height:1px!important;" class="Spacing">
+                    <td class="paddingLeft0" colspan="2"><div class="intervalDivClass"> </div></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table id="HDay" width="100%">
+                            <tbody>
+                            <tr>
+                                <th>日</th>
+                                <th>一</th>
+                                <th>二</th>
+                                <th>三</th>
+                                <th>四</th>
+                                <th>五</th>
+                                <th>六</th>
+                            </tr>
+                            <tr><td class="notSelectMonthDay" data="20180930">30</td><td class="" data="20181001">1</td><td class="grayCalendar" data="20181002"><a href="###" onclick="Cal.toWorkHours(-12)">2</a></td><td class="grayCalendar" data="20181003"><a href="###" onclick="Cal.toWorkHours(-12)">3</a></td><td class="grayCalendar" data="20181004"><a href="###" onclick="Cal.toWorkHours(-12)">4</a></td><td class="" data="20181005">5</td><td class="" data="20181006">6</td></tr>
+                            <tr><td class="grayCalendar" data="20181007"><a href="###" onclick="Cal.toWorkHours(-12)">7</a></td><td class="grayCalendar" data="20181008"><a href="###" onclick="Cal.toWorkHours(-12)">8</a></td><td class="grayCalendar" data="20181009"><a href="###" onclick="Cal.toWorkHours(-12)">9</a></td><td class="grayCalendar" data="20181010"><a href="###" onclick="Cal.toWorkHours(-12)">10</a></td><td class="grayCalendar" data="20181011"><a href="###" onclick="Cal.toWorkHours(-12)">11</a></td><td class="" data="20181012">12</td><td class="" data="20181013">13</td></tr>
+                            <tr><td class="grayCalendar" data="20181014"><a href="###" onclick="Cal.toWorkHours(-12)">14</a></td><td class="grayCalendar" data="20181015"><a href="###" onclick="Cal.toWorkHours(-12)">15</a></td><td class="grayCalendar" data="20181016"><a href="###" onclick="Cal.toWorkHours(-12)">16</a></td><td class="grayCalendar" data="20181017"><a href="###" onclick="Cal.toWorkHours(-12)">17</a></td><td class="grayCalendar" data="20181018"><a href="###" onclick="Cal.toWorkHours(-12)">18</a></td><td class="" data="20181019">19</td><td class="" data="20181020">20</td></tr>
+                            <tr><td class="" data="20181021">21</td><td class="" data="20181022">22</td><td class="" data="20181023">23</td><td class="" data="20181024">24</td><td class="" data="20181025">25</td><td class="" data="20181026">26</td><td class="" data="20181027">27</td></tr>
+                            <tr><td class="" data="20181028">28</td><td class="" data="20181029">29</td><td class="" data="20181030">30</td><td class="" data="20181031">31</td><td class="notSelectMonthDay" data="20181101">1</td><td class="notSelectMonthDay" data="20181102">2</td><td class="notSelectMonthDay" data="20181103">3</td></tr>
+                            <tr><td class="notSelectMonthDay" data="20181104">4</td><td class="notSelectMonthDay" data="20181105">5</td><td class="notSelectMonthDay" data="20181106">6</td><td class="notSelectMonthDay" data="20181107">7</td><td class="notSelectMonthDay" data="20181108">8</td><td class="notSelectMonthDay" data="20181109">9</td><td class="notSelectMonthDay" data="20181110">10</td></tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;width: 50%;">
+                        <img src="../css/images/newIndex/blue_circle_wev8.png" width="15" height="15" style="vertical-align:middle;">
+                        &nbsp;&nbsp;&nbsp;已填报
+                    </td>
+                    <td style="text-align: center;width: 50%;">
+                        <img src="../css/images/newIndex/gray_circle_wev8.png" width="15" height="15" style="vertical-align:middle;">
+                        &nbsp;&nbsp;&nbsp;未填报
+                    </td>
+                </tr>
+                </tbody></table>
+        </div>
+        <!--我的工时 -->
+    </div>
+</div>

@@ -1,0 +1,584 @@
+
+body{
+
+    background-image: url("bg.jpg");
+
+}
+
+
+
+
+
+a{
+
+    color: grey;/*背景颜色*/
+
+    text-decoration: none;/*去除文字的下划线*/
+
+}
+
+
+
+
+
+#head{
+
+    width: 960px;
+
+    margin: auto;
+
+    border-bottom: dotted 1px white; /*设置了白色的分界线*/
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.logo_title{
+
+    float: left;
+
+}
+
+
+
+
+
+.logo_title h1{
+
+    font-size: 30px;
+
+    color: white;
+
+}
+
+
+
+
+
+.logo_title h2{
+
+    font-size: 20px;
+
+    color: white;
+
+}
+
+
+
+
+
+.navi{
+
+    float: right;
+
+}
+
+
+
+
+
+.navi ul{
+
+    list-style: none;/*去除前面的黑点*/
+
+    margin-top: 75px;
+
+}
+
+
+
+
+
+.navi ul li{
+
+    display: inline-block;/*排列方式，排列到一行*/
+
+    font-size: 20px;
+
+    color: white;/*写不写都可以*/
+
+    margin-right: 20px;/*外填充距离*/
+
+}
+
+
+
+
+
+.navi ul li a{
+
+    color: white;
+
+    border:solid 1px white;/*白色的方框*/
+
+    border-radius: 6px;/*边角设置弧度*/
+
+    padding: 4px;/*上下内填充*/
+
+    padding-left: 14px;/*左内边距*/
+
+    padding-right: 14px;/*右内边距*/
+
+}
+
+
+
+
+
+.clear{
+
+    clear: both;
+
+}
+
+#wrapper{
+
+    margin: auto;
+
+    width: 960px;
+
+    margin-top: 20px;
+
+}
+
+
+
+
+
+.main{
+
+    width: 640px;
+
+    background-color: white;
+
+    float: left;
+
+    margin-right:10px;
+
+    padding: 20px;
+
+    border-radius: 4px;
+
+}
+
+
+
+
+
+.item{
+
+    margin-top: 14px;
+
+    padding-bottom: 20px;
+
+    border-bottom: dotted 1px #999;
+
+
+
+
+
+}
+
+
+
+
+
+.item_img{
+
+    float: left;
+
+    width: 100px;
+
+}
+
+
+
+
+
+.item_img img{
+
+    width: 80px;
+
+}
+
+
+
+
+
+.item_content{
+
+    /*padding-left: 100px;*/
+
+    /*float: right;*/
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.item_content h3{
+
+    font-size: 14px;
+
+    color: #FF6347;
+
+    margin: 0;
+
+}
+
+
+
+
+
+.item_info{
+
+    font-size: 12px;
+
+    font-style: italic;
+
+    margin:0;
+
+    color: #999;
+
+}
+
+
+
+
+
+.item_desc{
+
+    font-size: 14px;
+
+    margin: 0;
+
+    color: gray;
+
+    margin-top:10px; /*与h2有一定的边距*/
+
+    border-left: solid 1px #ccc;/*设置左边框*/
+
+    padding-left: 10px;/*设置左填充*/
+
+}
+
+
+
+
+
+
+
+
+
+.side{
+
+    width: 220px;
+
+    background-color: white ;
+
+    float: right;
+
+    padding: 20px;
+
+    border-radius: 6px;
+
+    margin-left: 10px;
+
+    height: 450px;
+
+}
+
+
+
+
+
+.author_img{
+
+    margin-top: 20px;
+
+    width: 120px;
+
+    margin:auto;
+
+}
+
+
+
+
+
+.author_img img{
+
+    width: 120px;
+
+    border:solid 1px #ccc;
+
+    border-radius: 4px;
+
+}
+
+
+
+
+
+.author_desc{
+
+    text-align: center;
+
+    border:solid 1px #ccc;
+
+    border-radius: 4px;
+
+    background-color: #eee;
+
+    padding-top:10px;
+
+    padding-bottom: 10px;
+
+    margin-top: 10px;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.author_desc h4{
+
+    margin:0;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.author_desc p{
+
+    margin:0;
+
+    font-size: 14px;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.top_article h4{
+
+    font-size:14px;
+
+    font-style: italic;
+
+    margin:0;
+
+    border-bottom: dotted 1px #999;
+
+    border-top: 10px;
+
+}
+
+
+
+
+
+.top_article ul{
+
+    margin-left:0;
+
+    padding-left:10px;
+
+    list-style: none;
+
+
+
+
+
+}
+
+
+
+
+
+.top_article ul li{
+
+    margin:0;
+
+    font-size: 14px;
+
+    margin-top: 5px;
+
+
+
+
+
+}
+
+
+
+
+
+/*.site_info{
+
+margin-top: 30px;
+
+border-top: solid 1px #ccc;
+
+}
+
+
+
+
+
+.site_info p{
+
+font-size: 14px;
+
+color: gray;
+
+margin:0;
+
+padding-left: 60px;
+
+margin-top: 10px;
+
+}*/
+
+.site-info{
+
+    margin-top: 30px;
+
+    border-top: solid 1px #ccc;/*分界线*/
+
+}
+
+
+
+
+
+.site-info p{
+
+    font-size: 14px;
+
+    color: gray;
+
+    text-align: center;
+
+    /*padding-left: 60px;/*左填充*/
+
+    margin:0;
+
+    margin-top: 10px;
+
+}
+
+
+
+
+
+#footer{
+
+    margin: auto;
+
+    width: 960px;
+
+    border-top: dotted 1px #ccc;
+
+    margin-top: 20px;
+
+}
+
+
+
+
+
+.site_about{
+
+    float: left;
+
+    padding-top: 15px;
+
+}
+
+
+
+
+
+.site_about p{
+
+    font-size: 16px;
+
+    color: white;
+
+}
+
+
+
+
+
+.site_link{
+
+    float: right;
+
+}
+
+
+
+
+
+.site_link ul{
+
+    list-style: none;
+
+    margin-top: 30px;
+
+}
+
+
+
+
+
+.site_link ul li{
+
+    display: inline-block;
+
+    font-size: 14px;
+
+    margin-right: 10px;
+
+    color: white;
+
+}
+
+
+
+
+
+.site_link ul li a{
+
+    border-radius: 6px;
+
+    border:solid 1px white;
+
+    padding: 4px;
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+    color: white;
+
+}

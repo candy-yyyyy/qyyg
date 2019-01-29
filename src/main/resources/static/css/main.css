@@ -1,0 +1,36 @@
+#index,#leftIndexPage,#rightIndexPage{
+    height:92%;
+}
+#myTask,#myAttendance,#newsNotice,#message{
+    height:50%;
+}
+#page{
+    position:relative;
+    margin:0 auto;
+    width:100%;
+    text-align:center;
+}
+#prePage, #nextPage {
+    color: #0e90d2;
+    border: 1px solid #0e90d2 !important;
+}
+.page_div a {
+    min-width: 30px;
+    height: 28px;
+    border: 1px solid #666 !important;
+    text-align: center;
+    margin: 0 4px;
+    cursor: pointer;
+    line-height: 28px;
+    color: #666666;
+    font-size: 13px;
+    display: inline-block;
+}
+.page_div .current {
+    border-color: #0e90d2;
+    color: #0e90d2;
+}
+#firstPage, #lastPage {
+    color: #0e90d2;
+    border: 1px solid #0e90d2 !important;
+}
