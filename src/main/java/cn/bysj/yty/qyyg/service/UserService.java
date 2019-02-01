@@ -9,4 +9,14 @@ public interface UserService {
     public JSONObject getStaffInfo(String operNo) throws Exception;
 
     public JSONObject updatePersonalStaffInfo(Staff staff) throws Exception;
+
+    /**
+     * 根据条件查询工号信息列表
+     * @param staff
+     * @param pageNo
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    public JSONObject queryStaffInfoByCondition(Staff staff,int pageNo, int pageSize) throws Exception;
 }

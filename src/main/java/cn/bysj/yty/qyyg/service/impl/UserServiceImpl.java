@@ -124,4 +124,17 @@ public class UserServiceImpl implements UserService {
         return rspJson;
     }
 
+    @Override
+    public JSONObject queryStaffInfoByCondition(Staff staff, int pageNo, int pageSize) throws Exception {
+        JSONObject rspJson = new JSONObject();
+        String appendSqlStr = "";
+        int total = userDao.queryStaffInfoByConditionCount(appendSqlStr);
+        if(total>=0){
+
+        }else{
+            rspJson.put("total",total);
+        }
+        return rspJson;
+    }
+
 }
