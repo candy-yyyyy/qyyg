@@ -37,6 +37,17 @@ window.Modal = {
             })
         }
     },
+    alert:function(messageText,callback){
+        this.modal.alert.find(".am-modal-btn").text("确定");
+        this.modal.alert.find(".message-title").html("提示");
+        this.modal.alert.find(".message-text").html(messageText);
+        this.modal.alert.modal({'closeViaDimmer':false}).modal("open");
+        if(callback!=null){
+            this.modal.alert.on('close.modal.amui',function(){
+                callback.call();
+            })
+        }
+    },
     confirm:function(message,callback){
         var confirmText = "确定";
         var cancelText = "取消";

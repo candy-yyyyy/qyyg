@@ -118,4 +118,40 @@ public class UserRest {
         }
         return rspJson;
     }
+
+    @RequestMapping(value = UrlMapping.GET_STAFF_INFO_LIST, method = RequestMethod.POST)
+    public JSONObject getStaffInsoList(String jsonStr) {
+        logger.info("条件查询员工信息列表====:"+jsonStr);
+        JSONObject rspJson = new JSONObject();
+        JSONObject jsonObj = JSONObject.parseObject(jsonStr);
+        Staff staff = new Staff();
+        if(jsonObj.containsKey("department_id") && !StringUtils.isEmpty(jsonObj.getString("department_id"))){
+            staff.setDepartmentId(jsonObj.getInteger("department_id"));
+        }
+        if(jsonObj.containsKey("staff_name") && !StringUtils.isEmpty(jsonObj.getString("staff_name"))){
+            staff.setStaffName(jsonObj.getString("staff_name"));
+        }
+        if(!jsonObj.containsKey("pageNo")){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","参数pageNo为空！");
+            return rspJson;
+        }
+        if(!jsonObj.containsKey("pageSize")){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","参数pageSize为空！");
+            return rspJson;
+        }
+        int pageNo = jsonObj.getInteger("pageNo");
+        int pageSize = jsonObj.getInteger("pageSize");
+        try{
+            rspJson = userService.queryStaffInfoByCondition(staff,pageNo,pageSize);
+            rspJson.put("respCode","0000");
+            rspJson.put("respDesc","查询员工信息列表成功");
+        }catch(Exception e){
+            logger.error("条件查询员工信息列表异常：",e);
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","查询员工信息列表异常,请联系系统管理员");
+        }
+        return rspJson;
+    }
 }

@@ -19,9 +19,9 @@ public interface UserDao extends JpaRepository<Staff, Long> {
     @Query(value = "update t_staff set remark=:#{#staff.remark},tel_number=:#{#staff.telNumber},staff_email=:#{#staff.staffEmail} where staff_id=:#{#staff.staffId}",nativeQuery = true)
     public int updatePersonalStaffInfo(@Param("staff")Staff staff);
 
-    @Query(value = "select count(*) from t_staff where state=0 and ?1",nativeQuery =  true)
-    public int queryStaffInfoByConditionCount(String appendSqlStr);
+   /* @Query(value = "select count(*) from t_staff where state=0 and ?1",nativeQuery =  true)
+    public int queryStaffInfoByConditionCount(String appendSqlStr);*/
 
-    @Query(value = "select * from t_staff where state=0 and ?1",nativeQuery =  true)
-    public List<Staff> queryStaffInfoByCondition(String appendSqlStr);
+   /* @Query(value = "select * from t_staff where state=0 #{#} limit ?2,?3",nativeQuery =  true)
+    public List<Staff> queryStaffInfoByCondition(String appendSqlStr,int pageOffset, int pageSize);*/
 }

@@ -118,6 +118,9 @@ function getMessageListInfo(num){
                         totalPage: pageTotal,
                         totalSize: data.args.total,
                         callback: function(num) {
+                            if(num==1){
+                                return;
+                            }
                             $.ajax({
                                 type: "POST",
                                 url: getMessageListInfoUrl,

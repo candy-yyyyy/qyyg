@@ -1,17 +1,23 @@
 // 登录
-var loginUrl = 'rest/user/login';
+var loginUrl = '/qyyg/rest/user/login';
 
 // 获取工号信息
-var getStaffInfoUrl = '../rest/user/getStaffInfo';
+var getStaffInfoUrl = '/qyyg/rest/user/getStaffInfo';
 
 // 修改个人信息
-var updatePersonStaffInfo = '../rest/user/updatePersonStaffInfo';
+var updatePersonStaffInfo = '/qyyg/est/user/updatePersonStaffInfo';
 
 // 获取公告列表
-var getNoticeListInfoUrl = 'rest/notice/getNoticeListInfo';
+var getNoticeListInfoUrl = '/qyyg/rest/notice/getNoticeListInfo';
 
 // 获取留言列表
-var getMessageListInfoUrl = 'rest/message/getMessageListInfo';
+var getMessageListInfoUrl = '/qyyg/rest/message/getMessageListInfo';
 
 // 新增留言
-var addMessageUrl = 'rest/message/addMessage';
+var addMessageUrl = '/qyyg/rest/message/addMessage';
+
+// 查询员工信息列表
+var getStaffInfoListUrl = '/qyyg/rest/user/getStaffInfoList';
+
+// 查询静态数据
+var getStaticInfoUrl = "/qyyg/rest/base/getStaticInfo";

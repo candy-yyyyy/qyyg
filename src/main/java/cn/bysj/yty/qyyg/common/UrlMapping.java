@@ -13,4 +13,8 @@ public class UrlMapping {
     public static final String GET_MESSAGE_LIST_INFO = "getMessageListInfo";
 
     public static final String ADD_MESSAGE = "addMessage";
+
+    public static final String GET_STAFF_INFO_LIST = "getStaffInfoList";
+
+    public static final String GET_STATIC_INFO = "getStaticInfo";
 }
