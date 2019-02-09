@@ -17,4 +17,10 @@ public class UrlMapping {
     public static final String GET_STAFF_INFO_LIST = "getStaffInfoList";
 
     public static final String GET_STATIC_INFO = "getStaticInfo";
+
+    // 修改工号状态
+    public static final String UPDATE_STAFF_STATE = "updateStaffState";
+
+    // 新增员工
+    public static final String ADD_STAFF = "addStaff";
 }

@@ -19,4 +19,21 @@ public interface UserService {
      * @throws Exception
      */
     public JSONObject queryStaffInfoByCondition(Staff staff,int pageNo, int pageSize) throws Exception;
+
+    /**
+     * 修改工号状态
+     * @param operNo
+     * @param state
+     * @return
+     * @throws Exception
+     */
+    public JSONObject updateStaffInfoState(String operNo,Integer state) throws  Exception;
+
+    /**
+     * 新增工号
+     * @param staff
+     * @return
+     * @throws Exception
+     */
+    public JSONObject insertStaff(Staff staff) throws Exception;
 }

@@ -24,4 +24,13 @@ public interface UserDao extends JpaRepository<Staff, Long> {
 
    /* @Query(value = "select * from t_staff where state=0 #{#} limit ?2,?3",nativeQuery =  true)
     public List<Staff> queryStaffInfoByCondition(String appendSqlStr,int pageOffset, int pageSize);*/
+   @Modifying(clearAutomatically = true)
+   @Query(value = "update t_staff set state=?2 where oper_no=?1",nativeQuery = true)
+   public int updateStaffInfoState(String operNo,Integer state);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "insert into t_staff(department_id,job_id,staff_name,staff_gender,staff_birthday,staff_email,tel_number,native_place,education,major,induction_time,oper_no,password,role_id,state) " +
+            "values(:#{#staff.departmentId},:#{#staff.jobId},:#{#staff.staffName},:#{#staff.staffGender},:#{#staff.staffBirthday},:#{#staff.staffEmail},:#{#staff.telNumber},:#{#staff.nativePlace},:#{#staff.education},:#{#staff.major}," +
+            ":#{#staff.inductionTime},:#{#staff.operNo},:#{#staff.password},:#{#staff.roleId},:#{#staff.state})",nativeQuery = true)
+   public int insertStaff(@Param("staff")Staff staff);
 }

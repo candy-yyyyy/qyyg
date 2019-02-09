@@ -1,0 +1,13 @@
+.staff_detail_input{
+    width:200px !important;
+    border:1px solid #ccc;
+    height:30px;
+}
+.staff_detail_div{
+    text-align: right !important;
+    line-height: 50px;
+    margin-right: 23%;
+}
+.am-btn-primary{
+    margin-right: 20%;
+}

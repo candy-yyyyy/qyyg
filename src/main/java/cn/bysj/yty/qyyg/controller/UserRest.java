@@ -154,4 +154,65 @@ public class UserRest {
         }
         return rspJson;
     }
+
+    @RequestMapping(value = UrlMapping.UPDATE_STAFF_STATE, method = RequestMethod.POST)
+    public JSONObject updateStaffState(String operNo,Integer state) {
+        logger.info("修改工号状态====:operNo"+operNo+"==state:"+state);
+        JSONObject rspJson = new JSONObject();
+        if(StringUtils.isEmpty(operNo)){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","参数operNo不能为空");
+            return rspJson;
+        }
+        if(state==null){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","state");
+            return rspJson;
+        }
+        try{
+            rspJson = userService.updateStaffInfoState(operNo,state);
+            rspJson.put("respCode","0000");
+            rspJson.put("respDesc","修改工号状态成功");
+        }catch(Exception e){
+            logger.error("修改工号状态异常：",e);
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","修改工号状态异常,请联系系统管理员");
+        }
+        return rspJson;
+    }
+
+    @RequestMapping(value = UrlMapping.ADD_STAFF, method = RequestMethod.POST)
+    public JSONObject addStaff(String jsonStr) {
+        logger.info("新增员工====:jsonStr"+jsonStr);
+        JSONObject rspJson = new JSONObject();
+        JSONObject json = null;
+        try{
+            json = JSONObject.parseObject(jsonStr);
+        }catch(Exception e){
+            logger.error("新增员工信息异常：",e);
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","新增员工信息异常,请确认传参是否为json格式");
+        }
+        Staff staff = new Staff();
+        staff.setJobId(json.getInteger("job_id"));
+        staff.setDepartmentId(json.getInteger("department_id"));
+        staff.setStaffName(json.getString("staff_name"));
+        staff.setStaffGender(json.getInteger("gender"));
+        staff.setStaffBirthday(json.getDate("birthday"));
+        staff.setStaffEmail(json.getString("email"));
+        staff.setTelNumber(json.getLong("tel_number"));
+        staff.setNativePlace(json.getString("native_place"));
+        staff.setEducation(json.getInteger("education"));
+        staff.setMajor(json.getString("major"));
+        staff.setInductionTime(json.getDate("induction_time"));
+        staff.setOperNo(json.getString("oper_no"));
+        try{
+            rspJson = userService.insertStaff(staff);
+        }catch(Exception e){
+            logger.error("修改工号状态异常：",e);
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","新增员工信息异常,请联系系统管理员");
+        }
+        return rspJson;
+    }
 }

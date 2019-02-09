@@ -10,7 +10,7 @@ $().ready(function(){
         window.location.href = './main.html';
         return;
     }
-    $('#login').unbind().bind('click',function(){
+    $('#login').unbind('click').bind('click',function(){
         login();
     });
 });

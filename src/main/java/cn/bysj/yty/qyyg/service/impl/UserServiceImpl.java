@@ -134,7 +134,7 @@ public class UserServiceImpl implements UserService {
     public JSONObject queryStaffInfoByCondition(Staff staff, int pageNo, int pageSize) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         JSONObject rspJson = new JSONObject();
-        String hqlStr = " from Staff a where 1=1";
+        String hqlStr = " from Staff a where 1=1 and a.state=0";
         if(staff.getDepartmentId()!=null){ // 部门
             hqlStr += " and a.departmentId="+staff.getDepartmentId();
         }
@@ -208,11 +208,22 @@ public class UserServiceImpl implements UserService {
                             staffJson.put("education","硕士");
                         }else if(staffObj.getEducation()==3){
                             staffJson.put("education","博士");
+                        }else if(staffObj.getEducation()==4){
+                            staffJson.put("education","其它");
                         }else{
                             staffJson.put("education","");
                         }
                     }else{
                         staffJson.put("education","");
+                    }
+                    if(staffObj.getState()!=null){
+                        if(staffObj.getState()==0){
+                            staffJson.put("state","有效");
+                        }else if(staffObj.getState()==1){
+                            staffJson.put("state","失效");
+                        }else{
+                            staffJson.put("state","");
+                        }
                     }
                     staffInfoArr.add(staffJson);
                 }
@@ -221,6 +232,45 @@ public class UserServiceImpl implements UserService {
             rspJson.put("staffList",staffInfoArr);
         }else{
             rspJson.put("total",total);
+        }
+        return rspJson;
+    }
+
+    @Override
+    @Transactional
+    public JSONObject updateStaffInfoState(String operNo, Integer state) throws Exception {
+        JSONObject rspJson = new JSONObject();
+        int i = userDao.updateStaffInfoState(operNo,state);
+        if(i>=0){
+            rspJson.put("respCode","0000");
+            rspJson.put("respDesc","修改工号状态成功");
+        }else{
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","修改工号状态失败");
+        }
+        return rspJson;
+    }
+
+    @Override
+    @Transactional
+    public JSONObject insertStaff(Staff staff) throws Exception {
+        JSONObject rspJson = new JSONObject();
+        staff.setRoleId("1");
+        staff.setPassword("123456");
+        staff.setState(0);
+        Staff existStaff = userDao.getStaffInfo(staff.getOperNo());
+        if(existStaff!=null){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","已存在此工号编码");
+            return rspJson;
+        }
+        int i = userDao.insertStaff(staff);
+        if(i>=0){
+            rspJson.put("respCode","0000");
+            rspJson.put("respDesc","新增工号成功");
+        }else{
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","新增工号失败");
         }
         return rspJson;
     }

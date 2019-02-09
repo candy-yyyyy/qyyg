@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link href="../css/main.css" rel="stylesheet" />
+    <link href="../css/staffManage.css" rel="stylesheet" />
     <script src="../js/common/all.js"></script>
     <script src="../assets/js/amazeui.min.js"></script>
     <script src="../js/common/paging.js"></script>
+    <script src="../js/nativePlace.js"></script>
     <script src="../js/staffManage.js"></script>
 </head>
 <body>
@@ -28,24 +30,16 @@
             <div class="am-u-sm-12 am-u-md-6">
                 <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                        <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-                        <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-                        <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
-                        <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+                        <button type="button" class="am-btn am-btn-default" id="staff_add_btn"><span class="am-icon-plus"></span> 新增</button>
                     </div>
                 </div>
             </div>
             <div class="am-u-sm-12 am-u-md-3">
                 <div class="am-form-group">
+                    姓名：
+                    <input type="text" id="staff_name" style="border:1px solid #ccc;height:30px;width:170px;"/>
                     部门：
                     <select data-am-selected="{btnSize: 'sm'}" id="department">
-                       <!-- <option value="option1">所有类别</option>
-                        <option value="option2">IT业界</option>
-                        <option value="option3">数码产品</option>
-                        <option value="option3">笔记本电脑</option>
-                        <option value="option3">平板电脑</option>
-                        <option value="option3">只能手机</option>
-                        <option value="option3">超极本</option>-->
                     </select>
                 </div>
             </div>
@@ -53,20 +47,19 @@
                 <div class="am-input-group am-input-group-sm">
                     <!--<input type="text" class="am-form-field">-->
                     <span class="am-input-group-btn">
-        <button class="am-btn am-btn-default" type="button" id="searchBtn">搜索</button>
-      </span>
+                        <button class="am-btn am-btn-default" type="button" id="searchBtn">搜索</button>
+                    </span>
                 </div>
             </div>
         </div>
 
         <div class="am-g">
             <div class="am-u-sm-12">
-                <form class="am-form">
                     <table class="am-table am-table-striped am-table-hover table-main">
                         <thead>
                         <tr>
                             <th class="table-title">工号</th><th class="table-title">姓名</th><th class="table-type">部门</th><th class="table-author am-hide-sm-only">性别</th><th class="table-date am-hide-sm-only">入职时间</th>
-                            <th class="table-date am-hide-sm-only">学历</th><th class="table-date am-hide-sm-only">联系方式</th><th class="table-date am-hide-sm-only">邮箱</th><th class="table-set">操作</th>
+                            <th class="table-date am-hide-sm-only">学历</th><th class="table-date am-hide-sm-only">联系方式</th><th class="table-date am-hide-sm-only">邮箱</th><th class="table-date am-hide-sm-only">状态</th><th class="table-set">操作</th>
                         </tr>
                         </thead>
                         <tbody id="staffInfoList">
@@ -77,15 +70,150 @@
                         <div id="page" class="page_div"></div>
                     </div>
                     <hr />
-                </form>
             </div>
 
         </div>
     </div>
 </div>
 
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="staff_detail_modal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd" style="text-align: center;">员工详情
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="staff_detail_div">
+                工号：
+                <input type="text" id="oper_no" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                姓名：
+                <input type="text" id="user_name" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                部门：
+                <input type="text" id="depart" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                职位：
+                <input type="text" id="job" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                生日：
+                <input type="text" id="birthday" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                性别：
+                <input type="text" id="sex" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                籍贯：
+                <input type="text" id="native" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                学历：
+                <input type="text" id="education" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                专业：
+                <input type="text" id="major" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                入职时间：
+                <input type="text" id="inductionTime" class="staff_detail_input" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                <span>电子邮件：</span>
+                <input type="text" id="email" class="staff_detail_input canUpdate" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                手机号码：
+                <input type="text" id="telNumber" class="staff_detail_input canUpdate" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                简介：
+                <input type="text" id="remark" class="staff_detail_input canUpdate" disabled="disabled"/>
+            </div>
+            <div class="staff_detail_div">
+                    <button type="button" class="am-btn am-btn-primary" id="staffBtn">修改</button>
+                    <button type="button" class="am-btn am-btn-primary" id="staffUpdateBtn" style="display: none;">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="staff_add_modal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd" style="text-align: center;">新增员工信息
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="staff_detail_div">
+                工号：
+                <input type="text" id="oper_no_add" class="staff_detail_input" />
+            </div>
+            <div class="staff_detail_div">
+                姓名：
+                <input type="text" id="user_name_add" class="staff_detail_input" />
+            </div>
+            <div class="staff_detail_div">
+                部门：
+                <select data-am-selected="{btnSize: 'sm'}" id="depart_add" class="staff_detail_input">
+                </select>
+            </div>
+            <div class="staff_detail_div">
+                职位：
+                <select data-am-selected="{btnSize: 'sm'}" id="job_add" class="staff_detail_input">
+                </select>
+            </div>
+            <div class="staff_detail_div">
+                生日：
+                <input type="text" id="birthday_add"  class="staff_detail_input" data-am-datepicker readonly required/>
+            </div>
+            <div class="staff_detail_div">
+                性别：
+                <select data-am-selected="{btnSize: 'sm'}" id="sex_add" class="staff_detail_input" >
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+            </div>
+            <div class="staff_detail_div">
+                籍贯：
+                <select data-am-selected="{btnSize: 'sm',maxHeight: 200}" id="native_add" class="staff_detail_input" >
+                </select>
+            </div>
+            <div class="staff_detail_div">
+                学历：
+                <select data-am-selected="{btnSize: 'sm'}" id="education_add" class="staff_detail_input" >
+                    <option value="0">高中</option>
+                    <option value="1">本科</option>
+                    <option value="2">硕士</option>
+                    <option value="3">博士</option>
+                    <option value="4">其它</option>
+                </select>
+            </div>
+            <div class="staff_detail_div">
+                专业：
+                <input type="text" id="major_add" class="staff_detail_input" />
+            </div>
+            <div class="staff_detail_div">
+                入职时间：
+                <input type="text" id="inductionTime_add" class="staff_detail_input" data-am-datepicker readonly required/>
+            </div>
+            <div class="staff_detail_div">
+                <span>电子邮件：</span>
+                <input type="text" id="email_add" class="staff_detail_input" />
+            </div>
+            <div class="staff_detail_div">
+                手机号码：
+                <input type="text" id="telNumber_add" class="staff_detail_input" />
+            </div>
+            <div class="staff_detail_div">
+                <button type="button" class="am-btn am-btn-primary" id="staffAddBtn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

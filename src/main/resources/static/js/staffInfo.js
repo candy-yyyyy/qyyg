@@ -7,25 +7,30 @@ $().ready(function(){
 
     // 修改按钮
     var reg_phone = /^1\d{10}$/;
-    $('#staffBtn').unbind().bind('click',function(){
+    var reg_email = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+    $('#staffBtn').unbind('click').bind('click',function(){
         $(this).hide();
         $('#staffUpdateBtn').show();
         $('.canUpdate').removeAttr("disabled");
     });
 
-    $('#staffUpdateBtn').unbind().bind('click',function(){
+    $('#staffUpdateBtn').unbind('click').bind('click',function(){
+        var phone = $.trim($('#phone').val());
+        var email = $.trim($('#email').val());
+        var remark = $.trim($('#remark').val());
+        if(!reg_phone.test(phone)){
+            Modal.alert("","请输入正确的手机号码！");
+            return;
+        }
+        if(!reg_email.test(email)){
+            Modal.alert("","请输入正确的邮箱格式！");
+            return;
+        }
+        if(remark.length>250){
+            Modal.alert("","简介字数请勿超过250个！");
+            return;
+        }
         Modal.confirm("确认更新资料",function () {
-            var phone = $.trim($('#phone').val());
-            var email = $.trim($('#email').val());
-            var remark = $.trim($('#remark').val());
-            if(!reg_phone.test(phone)){
-                Modal.alert("","请输入正确的手机号码！");
-                return;
-            }
-            if(remark.length>250){
-                Modal.alert("","简介字数请勿超过250个！");
-                return;
-            }
 
             var jsonParam = {
                 "email":email,
@@ -48,7 +53,7 @@ $().ready(function(){
                         $('#staffBtn').show();
                         Modal.alert("","更新个人资料成功!",function(){
                             $('.canUpdate').attr("disabled","disabled");
-                            $('#staffInfo').trigger('click');
+                            window.location.reload();
                         });
                     }else{
                         Modal.alert("",data.respDesc);

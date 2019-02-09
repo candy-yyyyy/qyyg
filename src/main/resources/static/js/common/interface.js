@@ -5,7 +5,7 @@ var loginUrl = '/qyyg/rest/user/login';
 var getStaffInfoUrl = '/qyyg/rest/user/getStaffInfo';
 
 // 修改个人信息
-var updatePersonStaffInfo = '/qyyg/est/user/updatePersonStaffInfo';
+var updatePersonStaffInfo = '/qyyg/rest/user/updatePersonStaffInfo';
 
 // 获取公告列表
 var getNoticeListInfoUrl = '/qyyg/rest/notice/getNoticeListInfo';
@@ -21,3 +21,9 @@ var getStaffInfoListUrl = '/qyyg/rest/user/getStaffInfoList';
 
 // 查询静态数据
 var getStaticInfoUrl = "/qyyg/rest/base/getStaticInfo";
+
+// 修改工号状态
+var updateStaffStateUrl = "/qyyg/rest/user/updateStaffState";
+
+// 新增员工
+var addStaff = "/qyyg/rest/user/addStaff";

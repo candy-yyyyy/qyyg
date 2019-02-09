@@ -9,12 +9,12 @@ $().ready(function(){
     }
 
     $('.userName').text(' '+userName);
-    $('.logOut').unbind().bind('click',function(){
+    $('.logOut').unbind('click').bind('click',function(){
         $.session.remove('userName');
         window.location.href = 'login.html';
     });
 
-    $('.link').unbind().bind('click',function(){
+    $('.link').unbind('click').bind('click',function(){
         $('#titleText').text($(this).text());
         var srcHtml = $(this).attr('srcHtml');
         $("#index").hide();
@@ -25,7 +25,7 @@ $().ready(function(){
     getNoticeListInfo();
     getMessageListInfo(1);
 
-    $('#messageBtn').unbind().bind('click',function(){
+    $('#messageBtn').unbind('click').bind('click',function(){
         var messageText = $('#messageText').val();
         messageText = $.trim(messageText);
         if(INPUT_UTIL.isNull(messageText)){
@@ -118,9 +118,6 @@ function getMessageListInfo(num){
                         totalPage: pageTotal,
                         totalSize: data.args.total,
                         callback: function(num) {
-                            if(num==1){
-                                return;
-                            }
                             $.ajax({
                                 type: "POST",
                                 url: getMessageListInfoUrl,
