@@ -27,3 +27,6 @@ var updateStaffStateUrl = "/qyyg/rest/user/updateStaffState";
 
 // 新增员工
 var addStaff = "/qyyg/rest/user/addStaff";
+
+// 查询工资信息
+var getSalaryInfoUrl = "/qyyg/rest/salary/getSalaryList";

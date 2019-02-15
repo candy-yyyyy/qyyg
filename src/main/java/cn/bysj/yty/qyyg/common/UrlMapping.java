@@ -23,4 +23,7 @@ public class UrlMapping {
 
     // 新增员工
     public static final String ADD_STAFF = "addStaff";
+
+    // 查询员工薪资明细
+    public static final String GET_SALARY_LIST = "getSalaryList";
 }

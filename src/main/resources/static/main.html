@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
   <link href="css/main.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/css.css">
   <!--[if lt IE 9]>
   <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
   <![endif]-->
@@ -28,6 +30,7 @@
   <script src="assets/js/modal.js"></script>
   <script src="js/common/paging.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/calendar.js"></script>
 
 </head>
 <body>
@@ -58,6 +61,7 @@
           <li><a href="main.html"><span class="am-icon-home"></span> 首页</a></li>
           <li><a href="#" class="link" srcHtml="./html/staffInfo.html" id="staffInfo"><span class="am-icon-user"></span> 个人信息</a></li>
           <li><a href="#" class="link" srcHtml="./html/staffManage.html" id="stafffManage"><span class="am-icon-pencil-square-o"></span> 工号信息</a></li>
+          <li><a href="#" class="link" srcHtml="./html/salary.html"><span class="am-icon-pencil-square-o"></span> 薪资信息</a></li>
         </ul>
       </div>
     </div>
@@ -93,41 +97,10 @@
             </div>
             <div class="am-panel am-panel-default" id="myAttendance">
               <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">我的考勤<span class="am-icon-chevron-down am-fr" ></span></div>
-              <div id="collapse-panel-2" class="am-in">
-                <table class="am-table am-table-bd am-table-bdrs am-table-striped am-table-hover">
-                  <tbody>
-                  <tr>
-                    <th class="am-text-center">#</th>
-                    <th>浏览器</th>
-                    <th>访问量</th>
-                  </tr>
-                  <tr>
-                    <td class="am-text-center"><img src="assets/i/examples/admin-chrome.png" alt=""></td>
-                    <td>Google Chrome</td>
-                    <td>3,005</td>
-                  </tr>
-                  <tr>
-                    <td class="am-text-center"><img src="assets/i/examples/admin-firefox.png" alt=""></td>
-                    <td>Mozilla Firefox</td>
-                    <td>2,505</td>
-                  </tr>
-                  <tr>
-                    <td class="am-text-center"><img src="assets/i/examples/admin-ie.png" alt=""></td>
-                    <td>Internet Explorer</td>
-                    <td>1,405</td>
-                  </tr>
-                  <tr>
-                    <td class="am-text-center"><img src="assets/i/examples/admin-opera.png" alt=""></td>
-                    <td>Opera</td>
-                    <td>4,005</td>
-                  </tr>
-                  <tr>
-                    <td class="am-text-center"><img src="assets/i/examples/admin-safari.png" alt=""></td>
-                    <td>Safari</td>
-                    <td>505</td>
-                  </tr>
-                  </tbody>
-                </table>
+              <div id="collapse-panel-2" class="am-in" style="text-align: center;">
+                <div style="height: 342px;margin: 30px auto;width:700px;" id="rili">
+                  <div id='calendar'></div>
+                </div>
               </div>
             </div>
           </div>
