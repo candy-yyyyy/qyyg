@@ -25,7 +25,7 @@ $().ready(function(){
     })
 
     $('#staffInfoList').on('click','.staff_detail_btn',function(){
-        var oper_no = $(this).parents().find('.oper_no').text();
+        var oper_no = $(this).parent().parent().parent().siblings('.oper_no').text();
         $('#staff_detail_modal').modal({"closeViaDimmer":false});
         $.ajax({
             type: "POST",

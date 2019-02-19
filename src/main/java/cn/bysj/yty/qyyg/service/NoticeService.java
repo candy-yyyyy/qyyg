@@ -1,8 +1,6 @@
 package cn.bysj.yty.qyyg.service;
 
-import cn.bysj.yty.qyyg.domain.Notice;
-
-import java.util.List;
+import com.alibaba.fastjson.JSONObject;
 
 public interface NoticeService {
     /**
@@ -10,5 +8,15 @@ public interface NoticeService {
      * @return
      * @throws Exception
      */
-    public List<Notice> getNoticeList() throws Exception;
+    public JSONObject getNoticeList(int pageNo, int pageSize) throws Exception;
+
+    /**
+     * 新增公告
+     * @param operNo
+     * @param noticeTitle
+     * @param noticeContent
+     * @return
+     * @throws Exception
+     */
+    public Boolean addNotince(String operNo,String noticeTitle,String noticeContent) throws Exception;
 }

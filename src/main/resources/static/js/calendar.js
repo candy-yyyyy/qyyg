@@ -1,21 +1,44 @@
 window.onload = function () {
     Rili()
 }
-
+var operNo = $.session.get('operNo');
 
 //日历
 function Rili() {
-    //$('#calendar').eCalendar();
+    var attendanceArr = [];
+    $.ajax({
+        type: "POST",
+        url: getAttendanceListUrl,
+        contentType:"application/x-www-form-urlencoded",
+        async:false,
+        dataType: "json",
+        data:{
+          operNo:operNo
+        },
+        success: function(data){
+            if(data.respCode=='0000'){
+                if(!INPUT_UTIL.isNull(data.args)){
+                    $.each(data.args,function(i,item){
+                        var obj = {datetime:new Date(item.year,item.month,item.day)};
+                        attendanceArr.push(obj);
+                    });
+                }
+            }
+        },
+        error:function(){
+            Modal.alert("查询考勤记录AJAX请求失败！");
+        }
+    });
     $('#calendar').eCalendar({
         weekDays: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],
         months: ['01', '02', '03', '04', '05', '06',
             '07', '08', '09', '10', '11', '12'
         ],
-        events: [
+        events: attendanceArr/*[
             {
-                datetime: new Date(2019, 2, 3, 17)
+                datetime: new Date(2019, 2, 3)
             }
-        ]
+        ]*/
     });
 };
 
@@ -56,7 +79,7 @@ function Rili() {
             $(this).addClass('c-event-over');
             var d = $(this).attr('data-event-day');
             $('div.c-event-item[data-event-day="' + d + '"]').addClass('c-event-over1').host;
-            $(".c-event-list").scrollTop($('div.c-event-item[data-event-day="' + d + '"]').position().top - $('div.c-event-item[data-event-day="' + d + '"]').height())
+            // $(".c-event-list").scrollTop($('div.c-event-item[data-event-day="' + d + '"]').position().top - $('div.c-event-item[data-event-day="' + d + '"]').height())
         };
 
         var mouseLeaveEvent = function() {
@@ -208,7 +231,8 @@ function Rili() {
 
                         if(d.getDate() == day && (d.getMonth() - 1) == dMonth && d.getFullYear() == dYear) {
                             cDay.addClass('c-event').attr('data-event-day', d.getDate());
-                            cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent).on('click', clickitem);
+                            // 去除日历上蓝色图标的鼠标事件
+                            // cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent).on('click', clickitem);
                         }
                     }
                     cDay.html(day++);

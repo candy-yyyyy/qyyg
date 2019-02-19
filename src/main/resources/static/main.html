@@ -31,7 +31,7 @@
   <script src="js/common/paging.js"></script>
   <script src="js/main.js"></script>
   <script src="js/calendar.js"></script>
-
+  <script src="js/common/wangEditor.min.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -60,8 +60,8 @@
         <ul class="am-list admin-sidebar-list">
           <li><a href="main.html"><span class="am-icon-home"></span> 首页</a></li>
           <li><a href="#" class="link" srcHtml="./html/staffInfo.html" id="staffInfo"><span class="am-icon-user"></span> 个人信息</a></li>
-          <li><a href="#" class="link" srcHtml="./html/staffManage.html" id="stafffManage"><span class="am-icon-pencil-square-o"></span> 工号信息</a></li>
-          <li><a href="#" class="link" srcHtml="./html/salary.html"><span class="am-icon-pencil-square-o"></span> 薪资信息</a></li>
+          <li><a href="#" class="link" srcHtml="./html/staffManage.html" id="stafffManage"><span class="am-icon-table"></span> 工号信息</a></li>
+          <li><a href="#" class="link" srcHtml="./html/salary.html"><span class="am-icon-table"></span> 薪资信息</a></li>
         </ul>
       </div>
     </div>
@@ -100,6 +100,7 @@
               <div id="collapse-panel-2" class="am-in" style="text-align: center;">
                 <div style="height: 342px;margin: 30px auto;width:700px;" id="rili">
                   <div id='calendar'></div>
+                  <button type="button" class="am-btn am-btn-primary" id="attendanceBtn">上班打卡</button>
                 </div>
               </div>
             </div>
@@ -107,10 +108,10 @@
 
           <div class="am-u-md-6" id="rightIndexPage">
             <div class="am-panel am-panel-default" id="newsNotice">
-              <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-4'}">新闻公告<span class="am-icon-chevron-down am-fr" ></span></div>
-              <div id="collapse-panel-4" class="am-panel-bd am-collapse am-in">
+              <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-4'}" style="cursor:auto;">新闻公告<button type="button" class="am-btn am-btn-primary am-btn-xs am-round" id="createNotice" style="float:right;">发布</button></div>
+              <div id="" class="am-panel-bd am-collapse am-in">
                 <ul class="am-list admin-content-task">
-                  <li>
+                <!--  <li>
                     <div class="admin-task-meta"> Posted on 25/1/2120 by John Clark</div>
                     <div class="admin-task-bd">
                       The starting place for exploring business management; helping new managers get started and experienced managers get better.
@@ -121,9 +122,10 @@
                     <div class="admin-task-bd">
                       基兰和狗熊出现在不同阵营时。基兰会获得BUFF，“装甲熊憎恨者”。狗熊会获得BUFF，“时光老人憎恨者”。
                     </div>
-                  </li>
+                  </li>-->
                 </ul>
               </div>
+              <div id="page1" class="page_div"></div>
             </div>
             <div class="am-panel am-panel-default" id="message">
               <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}">最近留言<span class="am-icon-chevron-down am-fr" ></span></div>
@@ -160,8 +162,21 @@
             </div>
           </div>
         </div>
-        <iframe id="iframemPage" height="92%" width="100%" src="" style="display: none;"/>
+        <iframe id="iframemPage" height="92%" width="100%" src="" style="display: none;"></iframe>
       </div>
+    </div>
+  </div>
+
+  <!--公告新闻发布模态框-->
+  <div class="am-modal am-modal-no-btn" tabindex="-1" id="notice_modal">
+    <div class="am-modal-dialog" style="width: 1000px;height: 500px;">
+      <div class="am-modal-hd" style="text-align: center;">发布
+        <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+      </div>
+      <div style="text-align:left;margin-left:10px;">标题：<input type="text" id="notice_title" style="width:500px;border:1px solid #ccc;height:30px;"/></div>
+      <div id="editor" style="margin-top:10px;">
+      </div>
+      <button type="button" class="am-btn am-btn-primary" id="notice_confirm_btn" style="margin-top:20px;">确定</button>
     </div>
   </div>
 </body>

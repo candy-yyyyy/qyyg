@@ -26,4 +26,19 @@ public class UrlMapping {
 
     // 查询员工薪资明细
     public static final String GET_SALARY_LIST = "getSalaryList";
+
+    // 查询工号考勤记录
+    public static final String GET_ATTENDANCE_LIST = "getAttendanceListByOperNo";
+
+    // 上班打卡考勤
+    public static final String ADD_ATTENDANCE = "addAttendance";
+
+    // 查询今天是否打卡
+    public static final String GET_ATTENDANCE_TODAY = "getAttendanceToday";
+
+    // 下班打卡考勤
+    public static final String UPDATE_ATTENDANCE = "updateAttendance";
+
+    // 新增新闻公告
+    public static final String ADD_NOTICE = "addNotice";
 }

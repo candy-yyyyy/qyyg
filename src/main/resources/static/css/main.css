@@ -4,7 +4,7 @@
 #myTask,#myAttendance,#newsNotice,#message{
     height:50%;
 }
-#page{
+#page,#page1{
     position:relative;
     margin:0 auto;
     width:100%;
@@ -35,6 +35,9 @@
     border: 1px solid #0e90d2 !important;
 }
 
+.notice-css{
+    cursor:pointer;
+}
 /*
 日历
  */
@@ -58,7 +61,7 @@
 .c-month-bottom{font-size: 22px;height: 30px}
 .c-nav-btn-over{}
 .c-today{color:white;background: -webkit-linear-gradient(left, #ffc74e , #ff9211); /* Safari 5.1 - 6.0 */background: -o-linear-gradient(right, #ffc74e , #ff9211); /* Opera 11.1 - 12.0 */background: -moz-linear-gradient(right, #ffc74e , #ff9211); /* Firefox 3.6 - 15 */background: linear-gradient(to right, #ffc74e , #ff9211)}
-.c-event{background-color:#00aeff;color:#fff;font-weight:700;cursor:pointer;position:relative;overflow:hidden; }
+.c-event{background-color:#00aeff;color:#fff;font-weight:700;position:relative;overflow:hidden; }
 .c-event-grid{margin-left:1px;height:inherit;width:565px;float:left;}
 .c-grid-title{float:left;color:#fff}
 .c-event-body{height:342px;overflow: hidden;}
