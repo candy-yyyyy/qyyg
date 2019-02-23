@@ -15,4 +15,8 @@ public class ControllerMapping {
     public static final String SALARY = REST + "salary";
 
     public static final String ATTENDANCE = REST + "attendance";
+
+    public static final String DEPARTMENT = REST + "department";
+
+    public static final String JOB = REST + "job";
 }

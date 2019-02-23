@@ -17,6 +17,9 @@ public class Department implements Serializable {
     @Column(name = "department_name")
     private String departmentName;
 
+    @Column(name = "department_manager")
+    private String departmentManager;
+
     @Column(name = "department_desc")
     private String departmentDesc;
 
@@ -55,11 +58,20 @@ public class Department implements Serializable {
         this.state = state;
     }
 
+    public String getDepartmentManager() {
+        return departmentManager;
+    }
+
+    public void setDepartmentManager(String departmentManager) {
+        this.departmentManager = departmentManager;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
+                ", departmentManager='" + departmentManager + '\'' +
                 ", departmentDesc='" + departmentDesc + '\'' +
                 ", state=" + state +
                 '}';

@@ -41,4 +41,16 @@ public class UrlMapping {
 
     // 新增新闻公告
     public static final String ADD_NOTICE = "addNotice";
+
+    // 新增部门
+    public static final String ADD_DEPARTMENT = "addDepartment";
+
+    // 查询部门信息列表
+    public static final String GET_DEPARTMENT = "getDepartment";
+
+    // 新增工种
+    public static final String ADD_JOB = "addJob";
+
+    // 查询工种列表
+    public static final String GET_JOB = "getJob";
 }

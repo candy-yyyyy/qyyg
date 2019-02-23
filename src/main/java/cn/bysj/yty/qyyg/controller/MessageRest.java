@@ -55,7 +55,7 @@ public class MessageRest {
     }
 
     @RequestMapping(value = UrlMapping.ADD_MESSAGE, method = RequestMethod.POST)
-    public JSONObject ADD_MESSAGE(String operNo,String content) {
+    public JSONObject addMessage(String operNo,String content) {
         logger.info("新增留言请求参数=====operNo:"+operNo+"==content:"+content);
         JSONObject rspJson = new JSONObject();
         if(StringUtils.isEmpty(operNo)){

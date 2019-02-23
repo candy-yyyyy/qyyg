@@ -42,9 +42,9 @@ window.Modal = {
         this.modal.alert.find(".message-title").html(messageTitle);
         this.modal.alert.find(".message-text").html(messageText);
         this.modal.alert.modal({'closeViaDimmer':false}).modal("open");
+        this.modal.alert.off('close.modal.amui');
         if(typeof fn == "function"){
             callback = fn;
-            this.modal.alert.off('close.modal.amui');
             this.modal.alert.on('close.modal.amui',function(){
                 callback.call();
             })

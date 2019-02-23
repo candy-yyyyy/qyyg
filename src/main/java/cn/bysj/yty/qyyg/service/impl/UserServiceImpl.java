@@ -151,7 +151,7 @@ public class UserServiceImpl implements UserService {
             List<Staff> staffInfoList = query.getResultList();
             if(staffInfoList!=null && staffInfoList.size()>0){
                 for (Staff staffObj:staffInfoList
-                     ) {
+                ) {
                     JSONObject staffJson = new JSONObject();
                     staffJson.put("staffName", StringUtils.isEmpty(staffObj.getStaffName())?"":staffObj.getStaffName());    // 员工姓名
                     // 职位

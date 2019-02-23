@@ -10,16 +10,16 @@ import java.util.List;
 public interface AttendanceDao extends JpaRepository<Attendance, Long> {
 
     @Query(value = "select * from t_attendance where oper_no=?1", nativeQuery = true)
-    public List<Attendance> getAttendanceByOperNo(String operNo);
+    List<Attendance> getAttendanceByOperNo(String operNo);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into t_attendance(oper_no,attendance_stime) values(?1,sysdate())", nativeQuery = true)
-    public int insertAttendance(String operNo);
+    int insertAttendance(String operNo);
 
     @Query(value = "select * from t_attendance where oper_no=?1 and DATE_FORMAT(NOW(),'%m-%d-%Y')=DATE_FORMAT(attendance_stime,'%m-%d-%Y')", nativeQuery = true)
-    public List<Attendance> getAttendanceToday(String operNo);
+    List<Attendance> getAttendanceToday(String operNo);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "update t_attendance set attendance_etime=sysdate() where attendance_id=?1", nativeQuery = true)
-    public int updateAttendance(Integer attendanceId);
+    int updateAttendance(Integer attendanceId);
 }

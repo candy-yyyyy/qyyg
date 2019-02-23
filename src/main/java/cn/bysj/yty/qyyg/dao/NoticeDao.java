@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface NoticeDao extends JpaRepository<Notice, Long> {
     @Query(value = "select count(*) from t_notice where state=0", nativeQuery = true)
-    public int getNoticeListCount();
+    int getNoticeListCount();
 
     @Query(value = "select * from t_notice where state=0 order by create_time desc limit ?1,?2", nativeQuery = true)
-    public List<Notice> getNoticeList(int pageOffset, int pageSize);
+    List<Notice> getNoticeList(int pageOffset, int pageSize);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into t_notice(notice_title,notice_content,notice_author,create_time,state) values(?2,?3,?1,sysdate(),0)", nativeQuery = true)
-    public int addNotice(String operNo,String noticeTitle,String noticeContent);
+    int addNotice(String operNo, String noticeTitle, String noticeContent);
 }

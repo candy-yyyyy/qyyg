@@ -279,7 +279,8 @@ function Rili() {
             var cMonbottom = $("<div/>").addClass("c-month-bottom");
             cMonth.append(cMonbottom);
             if($(".c-today").is(".c-event")) {
-                cMonbottom.html("有课");
+                // cMonbottom.html("有课");
+                cMonbottom.html(" ");
             } else {
                 cMonbottom.html(" ");
             }
