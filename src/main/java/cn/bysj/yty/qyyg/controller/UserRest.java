@@ -1,6 +1,7 @@
 package cn.bysj.yty.qyyg.controller;
 
 import cn.bysj.yty.qyyg.common.ControllerMapping;
+import cn.bysj.yty.qyyg.common.SessionUtil;
 import cn.bysj.yty.qyyg.common.UrlMapping;
 import cn.bysj.yty.qyyg.domain.Staff;
 import cn.bysj.yty.qyyg.service.UserService;
@@ -36,6 +37,7 @@ public class UserRest {
         try{
             String userName = userService.isLogin(username, password);
             if(!StringUtils.isEmpty(userName)){
+                SessionUtil.setSession("operNo",username);
                 rspJson.put("userName",userName);
                 rspJson.put("respCode","0000");
                 rspJson.put("respDesc","登录成功");
@@ -212,6 +214,21 @@ public class UserRest {
             logger.error("修改工号状态异常：",e);
             rspJson.put("respCode","9999");
             rspJson.put("respDesc","新增员工信息异常,请联系系统管理员");
+        }
+        return rspJson;
+    }
+
+    @RequestMapping(value = UrlMapping.GET_STAFF_NOW_DATE, method = RequestMethod.POST)
+    public JSONObject getStaffListByNowDate(int pageNo,int pageSize) {
+        JSONObject rspJson = new JSONObject();
+        try{
+            rspJson = userService.getStaffListByNowDate(pageNo, pageSize);
+            rspJson.put("respCode","0000");
+            rspJson.put("respDesc","查询当天生日员工信息列表成功");
+        }catch(Exception e){
+            logger.error("查询当天生日员工信息列表异常：",e);
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","查询当天生日员工信息列表异常,请联系系统管理员");
         }
         return rspJson;
     }

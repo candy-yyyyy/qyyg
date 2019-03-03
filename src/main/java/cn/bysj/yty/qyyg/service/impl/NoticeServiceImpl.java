@@ -47,4 +47,12 @@ public class NoticeServiceImpl implements NoticeService {
             return false;
         }
     }
+
+    @Override
+    public Notice getNoticeById(int noticeId) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Notice notice = noticeDao.getNoticeById(noticeId);
+        notice.setCreateTime(format.format(format.parse(notice.getCreateTime())));
+        return notice;
+    }
 }

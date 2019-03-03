@@ -1,6 +1,13 @@
 $().ready(function () {
     var userName = $.session.get('userName');
     var operNo = $.session.get('operNo');
+    var forwardSrcHtml = $.session.get('forwardFlag');
+    if(!INPUT_UTIL.isNull(forwardSrcHtml)){
+        $("#index").hide();
+        $('#iframemPage').attr('src', forwardSrcHtml);
+        $('#iframemPage').show();
+        $.session.remove('forwardFlag');
+    }
     if (INPUT_UTIL.isNull(userName)) {
         Modal.alert("提示", "请先登录！", function () {
             window.location.href = 'login.html';
@@ -24,6 +31,7 @@ $().ready(function () {
 
     getNoticeListInfo();
     getMessageListInfo(1);
+    staffCare();
 
     $('#messageBtn').unbind('click').bind('click', function () {
         var messageText = $('#messageText').val();
@@ -112,9 +120,13 @@ $().ready(function () {
             $(this).css('color', 'black');
         } else if (event.type == "click") {
             var noticeId = $(this).attr('notice_id');
-
+            window.location.href = "./html/notice.html?notice_id="+noticeId;
         }
     });
+
+   /* window.onbeforeunload = function(){
+        $.session.clear();
+    };*/
 });
 
 // 公告列表
@@ -328,6 +340,67 @@ function getAttendance(operNo) {
         },
         error: function () {
             Modal.alert("查询考勤记录AJAX请求失败！");
+        }
+
+    });
+}
+
+// 员工关怀
+function staffCare(){
+    $.ajax({
+        type: "POST",
+        url: getStaffListByNowDateUrl,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        data: {
+            pageNo: 1,
+            pageSize: 8
+        },
+        success: function (data) {
+            if (data.respCode == '0000') {
+                if (data.total > 0) {
+                    var str = '<span style="color: #fc7a30;">今天公司下列同事生日,为他们发送您的祝福吧!</span>';
+                    $.each(data.staffList, function (i, item) {
+                        str += '<li><div style="font-size:15px;">'+item.staffName+'/'+item.department+'-'+item.job+'</div></li>';
+                    });
+                    $('.admin-content-file').html(str);
+                    // 分页判断 余数为0时 页数不需要加一
+                    var pageTotal;
+                    if (parseInt(data.total) % 8 == 0) {
+                        pageTotal = parseInt(parseInt(data.total) / 8);
+                    } else {
+                        pageTotal = parseInt(parseInt(data.total) / 8) + 1;
+                    }
+                    $("#page2").paging({
+                        pageNo: 1,
+                        totalPage: pageTotal,
+                        totalSize: data.total,
+                        callback: function (num) {
+                            $.ajax({
+                                type: "POST",
+                                url: getStaffListByNowDateUrl,
+                                contentType: "application/x-www-form-urlencoded",
+                                data: {
+                                    "pageNo": num,
+                                    "pageSize": 8
+                                },
+                                dataType: "json",
+                                success: function (data) {
+                                    if (data.respCode == '0000') {
+                                        if (data.total > 0) {
+                                            var str = '<span style="color: #fc7a30;">今天公司下列同事生日,为他们发送您的祝福吧!</span>';
+                                            $.each(data.staffList, function (i, item) {
+                                                str += '<li><div style="font-size:15px;">'+item.staffName+'/'+item.department+'-'+item.job+'</div></li>';
+                                            });
+                                            $('.admin-content-file').html(str);
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    })
+                }
+            }
         }
     });
 }

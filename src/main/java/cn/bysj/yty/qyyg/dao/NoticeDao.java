@@ -17,4 +17,7 @@ public interface NoticeDao extends JpaRepository<Notice, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into t_notice(notice_title,notice_content,notice_author,create_time,state) values(?2,?3,?1,sysdate(),0)", nativeQuery = true)
     int addNotice(String operNo, String noticeTitle, String noticeContent);
+
+    @Query(value = "select * from t_notice where id=?1", nativeQuery = true)
+    Notice getNoticeById(int noticeId);
 }

@@ -2,7 +2,9 @@ package cn.bysj.yty.qyyg.controller;
 
 import cn.bysj.yty.qyyg.common.ControllerMapping;
 import cn.bysj.yty.qyyg.common.UrlMapping;
+import cn.bysj.yty.qyyg.domain.Notice;
 import cn.bysj.yty.qyyg.service.NoticeService;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +66,27 @@ public class NoticeRest {
             logger.error("新增公告新闻异常：",e);
             rspJson.put("respCode","9999");
             rspJson.put("respDesc","新增公告新闻异常");
+        }
+        return rspJson;
+    }
+
+    @RequestMapping(value = UrlMapping.GET_NOTICE, method = RequestMethod.POST)
+    public JSONObject getNotice(int noticeId) {
+        JSONObject rspJson = new JSONObject();
+        try{
+            Notice notice = noticeService.getNoticeById(noticeId);
+            if(notice!=null){
+                rspJson.put("respCode","0000");
+                rspJson.put("respDesc","查询公告信息成功");
+                rspJson.put("notice", JSON.toJSON(notice));
+            }else{
+                rspJson.put("respCode","9999");
+                rspJson.put("respDesc","查询公告信息失败");
+            }
+        }catch(Exception e){
+            logger.error("查询公告信息异常：",e);
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","查询公告信息异常");
         }
         return rspJson;
     }

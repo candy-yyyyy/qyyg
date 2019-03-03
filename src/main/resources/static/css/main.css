@@ -4,7 +4,7 @@
 #myTask,#myAttendance,#newsNotice,#message{
     height:50%;
 }
-#page,#page1{
+#page,#page1,#page2{
     position:relative;
     margin:0 auto;
     width:100%;

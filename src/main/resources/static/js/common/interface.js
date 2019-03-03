@@ -58,3 +58,12 @@ var addJobUrl = rest + 'job/addJob';
 
 // 查询工种列表
 var getJobListUrl = rest + 'job/getJob';
+
+// 查询日志列表
+var getLogListUrl = rest + 'log/getLog';
+
+// 查询新闻信息
+var getNoticeUrl = rest + 'notice/getNotice';
+
+// 查询当天生日的员工
+var getStaffListByNowDateUrl = rest + 'user/getStaffListByNowDate'

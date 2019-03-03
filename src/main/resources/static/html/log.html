@@ -11,31 +11,42 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../assets/css/amazeui.datetimepicker-se.min.css"/>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link href="../css/main.css" rel="stylesheet"/>
     <script src="../js/common/all.js"></script>
-    <script src="../assets/js/amazeui.min.js"></script>
+    <script src="../assets/js/amazeui.js"></script>
+    <!--<script src="../assets/js/moment-with-locales.min.js"></script>-->
+    <script src="../assets/js/moment.min.js"></script>
+    <script src="../assets/js/zh-cn.js"></script>
     <script src="../js/common/paging.js"></script>
-    <script src="../js/nativePlace.js"></script>
-    <script src="../js/salary.js"></script>
+    <script src="../js/publicFn.js"></script>
+    <script src="../js/log.js"></script>
 </head>
 <body>
-
-
+<script src="../assets/js/amazeui.datetimepicker-se.min.js"></script>
 <!-- content start -->
 <div class="admin-content">
     <div class="admin-content-body">
         <div class="am-g">
-            <div class="am-u-sm-12 am-u-md-3">
+            <div class="am-u-sm-12 am-u-md-3" style="width:40%;">
                 <div class="am-form-group">
-                    起始时间：
-                    <input type="text" id="start_month"
-                           data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}"
-                           style="border:1px solid #ccc;height:30px;width:170px;" data-am-datepicker readonly required/>
-                    结束时间：
-                    <input type="text" id="end_month"
-                           data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}"
-                           style="border:1px solid #ccc;height:30px;width:170px;" data-am-datepicker readonly required/>
+                    <div class="search_input">
+                        工号：
+                        <input type="text" id="oper_no" style=" border:1px solid #ccc;height:30px;width:170px;" />
+                    </div>
+                    <div class="search_input">
+                        起始时间：
+                        <input id="start_time"
+                               class="am-form-field"
+                               style="border:1px solid #ccc;height:30px;width:170px;float:right;"/>
+                    </div>
+                    <div class="search_input">
+                        结束时间：
+                        <input id="end_time"
+                               class="am-form-field"
+                               style="border:1px solid #ccc;height:30px;width:170px;float:right;"/>
+                    </div>
                 </div>
             </div>
             <div class="am-u-sm-12 am-u-md-3" style="float:left;">
@@ -52,12 +63,14 @@
                 <table class="am-table am-table-striped am-table-hover table-main">
                     <thead>
                     <tr>
-                        <th class="table-author am-hide-sm-only">月份</th>
-                        <th class="table-date am-hide-sm-only">工资</th>
-                        <th class="table-date am-hide-sm-only">描述</th>
+                        <th class="table-author am-hide-sm-only">工号</th>
+                        <th class="table-date am-hide-sm-only">请求地址</th>
+                        <th class="table-date am-hide-sm-only">日志时间</th>
+                        <th class="table-date am-hide-sm-only">请求报文</th>
+                        <th class="table-date am-hide-sm-only">返回报文</th>
                     </tr>
                     </thead>
-                    <tbody id="salaryInfoList">
+                    <tbody id="logInfoList">
 
                     </tbody>
                 </table>
@@ -71,7 +84,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

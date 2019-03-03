@@ -33,4 +33,7 @@ public interface UserDao extends JpaRepository<Staff, Long> {
             "values(:#{#staff.departmentId},:#{#staff.jobId},:#{#staff.staffName},:#{#staff.staffGender},:#{#staff.staffBirthday},:#{#staff.staffEmail},:#{#staff.telNumber},:#{#staff.nativePlace},:#{#staff.education},:#{#staff.major}," +
             ":#{#staff.inductionTime},:#{#staff.operNo},:#{#staff.password},:#{#staff.roleId},:#{#staff.state})", nativeQuery = true)
     int insertStaff(@Param("staff") Staff staff);
+
+    @Query(value = "select * from t_staff where staff_birthday = CURDATE()", nativeQuery = true)
+    List<Staff> getStaffListByNowDate();
 }

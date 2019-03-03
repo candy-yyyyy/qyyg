@@ -3,9 +3,11 @@ $().ready(function(){
     $('#searchBtn').unbind().bind('click',function(){
         var start_month = $.trim($('#start_month').val());
         var end_month = $.trim($('#end_month').val());
-        if(new Date(start_month)>new Date(end_month)){
-            Modal.alert("起始时间不能大于结束时间！");
-            return;
+        if(!INPUT_UTIL.isNull(start_month) && !INPUT_UTIL.isNull(end_month)){
+            if(new Date(start_month)>new Date(end_month)){
+                Modal.alert("起始时间不能大于结束时间！");
+                return;
+            }
         }
         $.ajax({
             type: "POST",

@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin table Examples</title>
+    <meta name="description" content="这是一个 table 页面">
+    <meta name="keywords" content="table">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../assets/css/amazeui.datetimepicker-se.min.css"/>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link href="../css/main.css" rel="stylesheet"/>
+    <script src="../js/common/all.js"></script>
+    <script src="../assets/js/amazeui.js"></script>
+    <script src="../js/notice.js"></script>
+</head>
+<body>
+
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <strong>企业员工管理系统</strong>
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <li><a href="#"><span class="am-icon-user"></span><span class="userName"> </span></a></li>
+            <li><a href="#" class="logOut"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+    </div>
+</header>
+<div class="am-cf admin-main">
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+        <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <ul class="am-list admin-sidebar-list">
+                <li><a href="../main.html"><span class="am-icon-home"></span> 首页</a></li>
+                <li><a href="#" class="link" srcHtml="./html/staffInfo.html" id="staffInfo"><span
+                        class="am-icon-user"></span> 个人信息</a></li>
+                <li><a href="#" class="link" srcHtml="./html/staffManage.html" id="stafffManage"><span
+                        class="am-icon-table"></span> 工号管理</a></li>
+                <li><a href="#" class="link" srcHtml="./html/salary.html"><span class="am-icon-table"></span> 薪资信息</a>
+                </li>
+                <li><a href="#" class="link" srcHtml="./html/depart.html"><span class="am-icon-table"></span> 部门管理</a>
+                </li>
+                <li class="admin-parent">
+                    <a class="am-cf am-collapsed" data-am-collapse="{target: '#collapse-nav'}"><span
+                            class="am-icon-pencil-square-o"></span> 系统管理 <span
+                            class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav">
+                        <li><a href="#" class="link" srcHtml="./html/job.html"><span class="am-icon-calendar"></span>
+                            工种配置</a></li>
+                        <li><a href="#" class="link" srcHtml="./html/log.html"><span class="am-icon-calendar"></span>
+                            系统日志</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="admin-content">
+        <div id="title" style="text-align: center;">
+            <h1 style="margin: 0;padding: 20px 0; height: auto;line-height: 30px;font-size: 24px;font-family: 'Microsoft YaHei';">
+                标题测试</h1>
+        </div>
+        <div id="publish_info"
+             style="text-align: center;height: 28px;line-height: 14px;color: #777;font-family: 'Microsoft YaHei';border-bottom: 1px dotted #cecece;">
+            发布时间:2019年3月3日 17点35分 作者：糖果
+        </div>
+        <div id="notice_info" style="height: auto;line-height: 28px;color: #000;font-size: 16px;font-family: SimSun;">
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

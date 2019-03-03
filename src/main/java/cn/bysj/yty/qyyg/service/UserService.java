@@ -39,4 +39,11 @@ public interface UserService {
      * @throws Exception
      */
     JSONObject insertStaff(Staff staff) throws Exception;
+
+    /**
+     * 查询当天生日的员工
+     * @return
+     * @throws Exception
+     */
+    JSONObject getStaffListByNowDate(int pageNo,int pageSize) throws Exception;
 }

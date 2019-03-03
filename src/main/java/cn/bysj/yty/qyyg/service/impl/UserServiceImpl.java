@@ -33,11 +33,12 @@ public class UserServiceImpl implements UserService {
     private DepartmentDao departmentDao;
     @PersistenceContext
     private EntityManager em; //注入EntityManager
+
     @Override
     public String isLogin(String username, String password) throws Exception {
-        List<Staff> staffList = userDao.login(username,password);
+        List<Staff> staffList = userDao.login(username, password);
         String userName = "";
-        if(staffList !=null && staffList.size()>0){
+        if (staffList != null && staffList.size() > 0) {
             userName = staffList.get(0).getStaffName();
         }
         return userName;
@@ -47,68 +48,68 @@ public class UserServiceImpl implements UserService {
     public JSONObject getStaffInfo(String operNo) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Staff staff = userDao.getStaffInfo(operNo);
-        if(staff != null){
+        if (staff != null) {
             JSONObject staffJson = new JSONObject();
-            staffJson.put("staffName", StringUtils.isEmpty(staff.getStaffName())?"":staff.getStaffName());    // 员工姓名
+            staffJson.put("staffName", StringUtils.isEmpty(staff.getStaffName()) ? "" : staff.getStaffName());    // 员工姓名
             // 职位
-            if(staff.getJobId()!=null){
+            if (staff.getJobId() != null) {
                 int jobId = staff.getJobId();
                 Job job = jobDao.getJobNameById(jobId);
-                if(job!=null){
-                    staffJson.put("job",StringUtils.isEmpty(job.getJobName())?"":job.getJobName());
-                }else{
-                    staffJson.put("job","");
+                if (job != null) {
+                    staffJson.put("job", StringUtils.isEmpty(job.getJobName()) ? "" : job.getJobName());
+                } else {
+                    staffJson.put("job", "");
                 }
-            }else{
-                staffJson.put("job","");
+            } else {
+                staffJson.put("job", "");
             }
             // 部门
-            if(staff.getDepartmentId()!=null){
+            if (staff.getDepartmentId() != null) {
                 int departmentId = staff.getDepartmentId();
                 Department department = departmentDao.getDepartmentById(departmentId);
-                if(department!=null){
-                    staffJson.put("department",StringUtils.isEmpty(department.getDepartmentName())?"":department.getDepartmentName());
-                }else{
-                    staffJson.put("department","");
+                if (department != null) {
+                    staffJson.put("department", StringUtils.isEmpty(department.getDepartmentName()) ? "" : department.getDepartmentName());
+                } else {
+                    staffJson.put("department", "");
                 }
-            }else{
-                staffJson.put("department","");
+            } else {
+                staffJson.put("department", "");
             }
-            staffJson.put("birthday",staff.getStaffBirthday()==null?"":sdf.format(staff.getStaffBirthday())); // 生日
+            staffJson.put("birthday", staff.getStaffBirthday() == null ? "" : sdf.format(staff.getStaffBirthday())); // 生日
             // 性别 翻译 0 男 1 女
-            if(staff.getStaffGender()!=null){
-                if(staff.getStaffGender()==0){
-                    staffJson.put("gender","男");
-                }else if(staff.getStaffGender()==1){
-                    staffJson.put("gender","女");
-                }else{
-                    staffJson.put("gender","");
+            if (staff.getStaffGender() != null) {
+                if (staff.getStaffGender() == 0) {
+                    staffJson.put("gender", "男");
+                } else if (staff.getStaffGender() == 1) {
+                    staffJson.put("gender", "女");
+                } else {
+                    staffJson.put("gender", "");
                 }
-            }else{
-                staffJson.put("gender","");
+            } else {
+                staffJson.put("gender", "");
             }
-            staffJson.put("nativePlace",StringUtils.isEmpty(staff.getNativePlace())?"":staff.getNativePlace()); // 籍贯
-            staffJson.put("major",StringUtils.isEmpty(staff.getMajor())?"":staff.getMajor());    // 专业
-            staffJson.put("inductionTime",staff.getInductionTime()==null?"":sdf.format(staff.getInductionTime()));    // 入职时间
-            staffJson.put("email",StringUtils.isEmpty(staff.getStaffEmail())?"":staff.getStaffEmail()); // 邮箱
-            staffJson.put("telNumber",staff.getTelNumber()==null?"":staff.getTelNumber());   // 手机号
-            staffJson.put("remark",StringUtils.isEmpty(staff.getRemark())?"":staff.getRemark());    // 个性签名
-            staffJson.put("operNo",StringUtils.isEmpty(staff.getOperNo())?"":staff.getOperNo());    // 工号
-            staffJson.put("staffId",staff.getStaffId());
-            if(staff.getEducation()!=null){
-                if(staff.getEducation()==0){
-                    staffJson.put("education","高中");
-                }else if(staff.getEducation()==1){
-                    staffJson.put("education","本科");
-                }else if(staff.getEducation()==2){
-                    staffJson.put("education","硕士");
-                }else if(staff.getEducation()==3){
-                    staffJson.put("education","博士");
-                }else{
-                    staffJson.put("education","");
+            staffJson.put("nativePlace", StringUtils.isEmpty(staff.getNativePlace()) ? "" : staff.getNativePlace()); // 籍贯
+            staffJson.put("major", StringUtils.isEmpty(staff.getMajor()) ? "" : staff.getMajor());    // 专业
+            staffJson.put("inductionTime", staff.getInductionTime() == null ? "" : sdf.format(staff.getInductionTime()));    // 入职时间
+            staffJson.put("email", StringUtils.isEmpty(staff.getStaffEmail()) ? "" : staff.getStaffEmail()); // 邮箱
+            staffJson.put("telNumber", staff.getTelNumber() == null ? "" : staff.getTelNumber());   // 手机号
+            staffJson.put("remark", StringUtils.isEmpty(staff.getRemark()) ? "" : staff.getRemark());    // 个性签名
+            staffJson.put("operNo", StringUtils.isEmpty(staff.getOperNo()) ? "" : staff.getOperNo());    // 工号
+            staffJson.put("staffId", staff.getStaffId());
+            if (staff.getEducation() != null) {
+                if (staff.getEducation() == 0) {
+                    staffJson.put("education", "高中");
+                } else if (staff.getEducation() == 1) {
+                    staffJson.put("education", "本科");
+                } else if (staff.getEducation() == 2) {
+                    staffJson.put("education", "硕士");
+                } else if (staff.getEducation() == 3) {
+                    staffJson.put("education", "博士");
+                } else {
+                    staffJson.put("education", "");
                 }
-            }else{
-                staffJson.put("education","");
+            } else {
+                staffJson.put("education", "");
             }
             return staffJson;
         }
@@ -120,12 +121,12 @@ public class UserServiceImpl implements UserService {
     public JSONObject updatePersonalStaffInfo(Staff staff) throws Exception {
         JSONObject rspJson = new JSONObject();
         int i = userDao.updatePersonalStaffInfo(staff);
-        if(i>=0){
-            rspJson.put("respCode","0000");
-            rspJson.put("respDesc","修改个人信息成功");
-        }else{
-            rspJson.put("respCode","9999");
-            rspJson.put("respDesc","修改个人信息失败");
+        if (i >= 0) {
+            rspJson.put("respCode", "0000");
+            rspJson.put("respDesc", "修改个人信息成功");
+        } else {
+            rspJson.put("respCode", "9999");
+            rspJson.put("respDesc", "修改个人信息失败");
         }
         return rspJson;
     }
@@ -135,103 +136,103 @@ public class UserServiceImpl implements UserService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         JSONObject rspJson = new JSONObject();
         String hqlStr = " from Staff a where 1=1 and a.state=0";
-        if(staff.getDepartmentId()!=null){ // 部门
-            hqlStr += " and a.departmentId="+staff.getDepartmentId();
+        if (staff.getDepartmentId() != null) { // 部门
+            hqlStr += " and a.departmentId=" + staff.getDepartmentId();
         }
-        if(!StringUtils.isEmpty(staff.getStaffName())){   // 名字
-            hqlStr += " and a.staffName like '%"+staff.getStaffName()+"%'";
+        if (!StringUtils.isEmpty(staff.getStaffName())) {   // 名字
+            hqlStr += " and a.staffName like '%" + staff.getStaffName() + "%'";
         }
         Query query = em.createQuery(hqlStr);
         int total = query.getResultList().size();
-        if(total>0){
+        if (total > 0) {
             JSONArray staffInfoArr = new JSONArray();
-            int pageOffset = (pageNo-1)*pageSize;
+            int pageOffset = (pageNo - 1) * pageSize;
             query = em.createQuery(hqlStr).setFirstResult(pageOffset).setMaxResults(pageSize);
             @SuppressWarnings("unchecked")
             List<Staff> staffInfoList = query.getResultList();
-            if(staffInfoList!=null && staffInfoList.size()>0){
-                for (Staff staffObj:staffInfoList
+            if (staffInfoList != null && staffInfoList.size() > 0) {
+                for (Staff staffObj : staffInfoList
                 ) {
                     JSONObject staffJson = new JSONObject();
-                    staffJson.put("staffName", StringUtils.isEmpty(staffObj.getStaffName())?"":staffObj.getStaffName());    // 员工姓名
+                    staffJson.put("staffName", StringUtils.isEmpty(staffObj.getStaffName()) ? "" : staffObj.getStaffName());    // 员工姓名
                     // 职位
-                    if(staff.getJobId()!=null){
+                    if (staffObj.getJobId() != null) {
                         int jobId = staffObj.getJobId();
                         Job job = jobDao.getJobNameById(jobId);
-                        if(job!=null){
-                            staffJson.put("job",StringUtils.isEmpty(job.getJobName())?"":job.getJobName());
-                        }else{
-                            staffJson.put("job","");
+                        if (job != null) {
+                            staffJson.put("job", StringUtils.isEmpty(job.getJobName()) ? "" : job.getJobName());
+                        } else {
+                            staffJson.put("job", "");
                         }
-                    }else{
-                        staffJson.put("job","");
+                    } else {
+                        staffJson.put("job", "");
                     }
                     // 部门
-                    if(staffObj.getDepartmentId()!=null){
+                    if (staffObj.getDepartmentId() != null) {
                         int departmentId = staffObj.getDepartmentId();
                         Department department = departmentDao.getDepartmentById(departmentId);
-                        if(department!=null){
-                            staffJson.put("department",StringUtils.isEmpty(department.getDepartmentName())?"":department.getDepartmentName());
-                        }else{
-                            staffJson.put("department","");
+                        if (department != null) {
+                            staffJson.put("department", StringUtils.isEmpty(department.getDepartmentName()) ? "" : department.getDepartmentName());
+                        } else {
+                            staffJson.put("department", "");
                         }
-                    }else{
-                        staffJson.put("department","");
+                    } else {
+                        staffJson.put("department", "");
                     }
-                    staffJson.put("birthday",staffObj.getStaffBirthday()==null?"":sdf.format(staffObj.getStaffBirthday())); // 生日
+                    staffJson.put("birthday", staffObj.getStaffBirthday() == null ? "" : sdf.format(staffObj.getStaffBirthday())); // 生日
                     // 性别 翻译 0 男 1 女
-                    if(staffObj.getStaffGender()!=null){
-                        if(staffObj.getStaffGender()==0){
-                            staffJson.put("gender","男");
-                        }else if(staffObj.getStaffGender()==1){
-                            staffJson.put("gender","女");
-                        }else{
-                            staffJson.put("gender","");
+                    if (staffObj.getStaffGender() != null) {
+                        if (staffObj.getStaffGender() == 0) {
+                            staffJson.put("gender", "男");
+                        } else if (staffObj.getStaffGender() == 1) {
+                            staffJson.put("gender", "女");
+                        } else {
+                            staffJson.put("gender", "");
                         }
-                    }else{
-                        staffJson.put("gender","");
+                    } else {
+                        staffJson.put("gender", "");
                     }
-                    staffJson.put("nativePlace",StringUtils.isEmpty(staffObj.getNativePlace())?"":staffObj.getNativePlace()); // 籍贯
-                    staffJson.put("major",StringUtils.isEmpty(staffObj.getMajor())?"":staffObj.getMajor());    // 专业
-                    staffJson.put("inductionTime",staffObj.getInductionTime()==null?"":sdf.format(staffObj.getInductionTime()));    // 入职时间
-                    staffJson.put("email",StringUtils.isEmpty(staffObj.getStaffEmail())?"":staffObj.getStaffEmail()); // 邮箱
-                    staffJson.put("telNumber",staffObj.getTelNumber()==null?"":staffObj.getTelNumber());   // 手机号
-                    staffJson.put("remark",StringUtils.isEmpty(staffObj.getRemark())?"":staffObj.getRemark());    // 个性签名
-                    staffJson.put("operNo",StringUtils.isEmpty(staffObj.getOperNo())?"":staffObj.getOperNo());    // 工号
-                    staffJson.put("staffId",staffObj.getStaffId());
-                    if(staffObj.getEducation()!=null){
-                        if(staffObj.getEducation()==0){
-                            staffJson.put("education","高中");
-                        }else if(staffObj.getEducation()==1){
-                            staffJson.put("education","本科");
-                        }else if(staffObj.getEducation()==2){
-                            staffJson.put("education","硕士");
-                        }else if(staffObj.getEducation()==3){
-                            staffJson.put("education","博士");
-                        }else if(staffObj.getEducation()==4){
-                            staffJson.put("education","其它");
-                        }else{
-                            staffJson.put("education","");
+                    staffJson.put("nativePlace", StringUtils.isEmpty(staffObj.getNativePlace()) ? "" : staffObj.getNativePlace()); // 籍贯
+                    staffJson.put("major", StringUtils.isEmpty(staffObj.getMajor()) ? "" : staffObj.getMajor());    // 专业
+                    staffJson.put("inductionTime", staffObj.getInductionTime() == null ? "" : sdf.format(staffObj.getInductionTime()));    // 入职时间
+                    staffJson.put("email", StringUtils.isEmpty(staffObj.getStaffEmail()) ? "" : staffObj.getStaffEmail()); // 邮箱
+                    staffJson.put("telNumber", staffObj.getTelNumber() == null ? "" : staffObj.getTelNumber());   // 手机号
+                    staffJson.put("remark", StringUtils.isEmpty(staffObj.getRemark()) ? "" : staffObj.getRemark());    // 个性签名
+                    staffJson.put("operNo", StringUtils.isEmpty(staffObj.getOperNo()) ? "" : staffObj.getOperNo());    // 工号
+                    staffJson.put("staffId", staffObj.getStaffId());
+                    if (staffObj.getEducation() != null) {
+                        if (staffObj.getEducation() == 0) {
+                            staffJson.put("education", "高中");
+                        } else if (staffObj.getEducation() == 1) {
+                            staffJson.put("education", "本科");
+                        } else if (staffObj.getEducation() == 2) {
+                            staffJson.put("education", "硕士");
+                        } else if (staffObj.getEducation() == 3) {
+                            staffJson.put("education", "博士");
+                        } else if (staffObj.getEducation() == 4) {
+                            staffJson.put("education", "其它");
+                        } else {
+                            staffJson.put("education", "");
                         }
-                    }else{
-                        staffJson.put("education","");
+                    } else {
+                        staffJson.put("education", "");
                     }
-                    if(staffObj.getState()!=null){
-                        if(staffObj.getState()==0){
-                            staffJson.put("state","有效");
-                        }else if(staffObj.getState()==1){
-                            staffJson.put("state","失效");
-                        }else{
-                            staffJson.put("state","");
+                    if (staffObj.getState() != null) {
+                        if (staffObj.getState() == 0) {
+                            staffJson.put("state", "有效");
+                        } else if (staffObj.getState() == 1) {
+                            staffJson.put("state", "失效");
+                        } else {
+                            staffJson.put("state", "");
                         }
                     }
                     staffInfoArr.add(staffJson);
                 }
             }
-            rspJson.put("total",total);
-            rspJson.put("staffList",staffInfoArr);
-        }else{
-            rspJson.put("total",total);
+            rspJson.put("total", total);
+            rspJson.put("staffList", staffInfoArr);
+        } else {
+            rspJson.put("total", total);
         }
         return rspJson;
     }
@@ -240,13 +241,13 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public JSONObject updateStaffInfoState(String operNo, Integer state) throws Exception {
         JSONObject rspJson = new JSONObject();
-        int i = userDao.updateStaffInfoState(operNo,state);
-        if(i>=0){
-            rspJson.put("respCode","0000");
-            rspJson.put("respDesc","修改工号状态成功");
-        }else{
-            rspJson.put("respCode","9999");
-            rspJson.put("respDesc","修改工号状态失败");
+        int i = userDao.updateStaffInfoState(operNo, state);
+        if (i >= 0) {
+            rspJson.put("respCode", "0000");
+            rspJson.put("respDesc", "修改工号状态成功");
+        } else {
+            rspJson.put("respCode", "9999");
+            rspJson.put("respDesc", "修改工号状态失败");
         }
         return rspJson;
     }
@@ -259,18 +260,120 @@ public class UserServiceImpl implements UserService {
         staff.setPassword("123456");
         staff.setState(0);
         Staff existStaff = userDao.getStaffInfo(staff.getOperNo());
-        if(existStaff!=null){
-            rspJson.put("respCode","9999");
-            rspJson.put("respDesc","已存在此工号编码");
+        if (existStaff != null) {
+            rspJson.put("respCode", "9999");
+            rspJson.put("respDesc", "已存在此工号编码");
             return rspJson;
         }
         int i = userDao.insertStaff(staff);
-        if(i>=0){
-            rspJson.put("respCode","0000");
-            rspJson.put("respDesc","新增工号成功");
-        }else{
-            rspJson.put("respCode","9999");
-            rspJson.put("respDesc","新增工号失败");
+        if (i >= 0) {
+            rspJson.put("respCode", "0000");
+            rspJson.put("respDesc", "新增工号成功");
+        } else {
+            rspJson.put("respCode", "9999");
+            rspJson.put("respDesc", "新增工号失败");
+        }
+        return rspJson;
+    }
+
+    @Override
+    public JSONObject getStaffListByNowDate(int pageNo, int pageSize) throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        JSONObject rspJson = new JSONObject();
+        String hqlStr = " from Staff a where 1=1";
+        hqlStr += " and a.staffBirthday=CURDATE()";
+        Query query = em.createQuery(hqlStr);
+        int total = query.getResultList().size();
+        if (total > 0) {
+            JSONArray staffInfoArr = new JSONArray();
+            int pageOffset = (pageNo - 1) * pageSize;
+            query = em.createQuery(hqlStr).setFirstResult(pageOffset).setMaxResults(pageSize);
+            List<Staff> staffInfoList = query.getResultList();
+            if (staffInfoList != null && staffInfoList.size() > 0) {
+                for (Staff staffObj : staffInfoList
+                ) {
+                    JSONObject staffJson = new JSONObject();
+                    staffJson.put("staffName", StringUtils.isEmpty(staffObj.getStaffName()) ? "" : staffObj.getStaffName());    // 员工姓名
+                    // 职位
+                    if (staffObj.getJobId() != null) {
+                        int jobId = staffObj.getJobId();
+                        Job job = jobDao.getJobNameById(jobId);
+                        if (job != null) {
+                            staffJson.put("job", StringUtils.isEmpty(job.getJobName()) ? "" : job.getJobName());
+                        } else {
+                            staffJson.put("job", "");
+                        }
+                    } else {
+                        staffJson.put("job", "");
+                    }
+                    // 部门
+                    if (staffObj.getDepartmentId() != null) {
+                        int departmentId = staffObj.getDepartmentId();
+                        Department department = departmentDao.getDepartmentById(departmentId);
+                        if (department != null) {
+                            staffJson.put("department", StringUtils.isEmpty(department.getDepartmentName()) ? "" : department.getDepartmentName());
+                        } else {
+                            staffJson.put("department", "");
+                        }
+                    } else {
+                        staffJson.put("department", "");
+                    }
+                    staffJson.put("birthday", staffObj.getStaffBirthday() == null ? "" : sdf.format(staffObj.getStaffBirthday())); // 生日
+                    // 性别 翻译 0 男 1 女
+                    if (staffObj.getStaffGender() != null) {
+                        if (staffObj.getStaffGender() == 0) {
+                            staffJson.put("gender", "男");
+                        } else if (staffObj.getStaffGender() == 1) {
+                            staffJson.put("gender", "女");
+                        } else {
+                            staffJson.put("gender", "");
+                        }
+                    } else {
+                        staffJson.put("gender", "");
+                    }
+                    staffJson.put("nativePlace", StringUtils.isEmpty(staffObj.getNativePlace()) ? "" : staffObj.getNativePlace()); // 籍贯
+                    staffJson.put("major", StringUtils.isEmpty(staffObj.getMajor()) ? "" : staffObj.getMajor());    // 专业
+                    staffJson.put("inductionTime", staffObj.getInductionTime() == null ? "" : sdf.format(staffObj.getInductionTime()));    // 入职时间
+                    staffJson.put("email", StringUtils.isEmpty(staffObj.getStaffEmail()) ? "" : staffObj.getStaffEmail()); // 邮箱
+                    staffJson.put("telNumber", staffObj.getTelNumber() == null ? "" : staffObj.getTelNumber());   // 手机号
+                    staffJson.put("remark", StringUtils.isEmpty(staffObj.getRemark()) ? "" : staffObj.getRemark());    // 个性签名
+                    staffJson.put("operNo", StringUtils.isEmpty(staffObj.getOperNo()) ? "" : staffObj.getOperNo());    // 工号
+                    staffJson.put("staffId", staffObj.getStaffId());
+                    if (staffObj.getEducation() != null) {
+                        if (staffObj.getEducation() == 0) {
+                            staffJson.put("education", "高中");
+                        } else if (staffObj.getEducation() == 1) {
+                            staffJson.put("education", "本科");
+                        } else if (staffObj.getEducation() == 2) {
+                            staffJson.put("education", "硕士");
+                        } else if (staffObj.getEducation() == 3) {
+                            staffJson.put("education", "博士");
+                        } else if (staffObj.getEducation() == 4) {
+                            staffJson.put("education", "其它");
+                        } else {
+                            staffJson.put("education", "");
+                        }
+                    } else {
+                        staffJson.put("education", "");
+                    }
+                    if (staffObj.getState() != null) {
+                        if (staffObj.getState() == 0) {
+                            staffJson.put("state", "有效");
+                        } else if (staffObj.getState() == 1) {
+                            staffJson.put("state", "失效");
+                        } else {
+                            staffJson.put("state", "");
+                        }
+                    }
+                    staffInfoArr.add(staffJson);
+                }
+                rspJson.put("staffList", staffInfoArr);
+                rspJson.put("total", total);
+            } else {
+                rspJson.put("total", 0);
+            }
+        } else {
+            rspJson.put("total", 0);
         }
         return rspJson;
     }

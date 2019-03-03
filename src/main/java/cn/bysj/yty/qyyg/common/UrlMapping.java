@@ -53,4 +53,13 @@ public class UrlMapping {
 
     // 查询工种列表
     public static final String GET_JOB = "getJob";
+
+    // 查询日志列表
+    public static final String GET_LOG = "getLog";
+
+    // 获取新闻信息
+    public static final String GET_NOTICE = "getNotice";
+
+    // 查询当天生日的员工
+    public static final String GET_STAFF_NOW_DATE = "getStaffListByNowDate";
 }
