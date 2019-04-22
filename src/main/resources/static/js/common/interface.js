@@ -67,3 +67,12 @@ var getNoticeUrl = rest + 'notice/getNotice';
 
 // 查询当天生日的员工
 var getStaffListByNowDateUrl = rest + 'user/getStaffListByNowDate'
+
+// 修改工号密码
+var modifyPwdUrl = rest + 'user/modifyPwd';
+
+// 修改工种状态
+var updateJobStateUrl = rest + 'job/updateJobState';
+
+// 修改部门状态
+var updateDepartStateUrl = rest + 'department/updateDepartState';

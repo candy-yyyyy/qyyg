@@ -36,4 +36,8 @@ public interface UserDao extends JpaRepository<Staff, Long> {
 
     @Query(value = "select * from t_staff where staff_birthday = CURDATE()", nativeQuery = true)
     List<Staff> getStaffListByNowDate();
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update t_staff set password=:#{#staff.password} where oper_no=:#{#staff.operNo}", nativeQuery = true)
+    int updatePwd(@Param("staff") Staff staff);
 }

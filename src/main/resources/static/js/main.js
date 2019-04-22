@@ -2,7 +2,7 @@ $().ready(function () {
     var userName = $.session.get('userName');
     var operNo = $.session.get('operNo');
     var forwardSrcHtml = $.session.get('forwardFlag');
-    if(!INPUT_UTIL.isNull(forwardSrcHtml)){
+    if (!INPUT_UTIL.isNull(forwardSrcHtml)) {
         $("#index").hide();
         $('#iframemPage').attr('src', forwardSrcHtml);
         $('#iframemPage').show();
@@ -92,7 +92,7 @@ $().ready(function () {
                 noticeTitle: noticeTitle,
                 noticeContent: noticeContent
             },
-                success: function (data) {
+            success: function (data) {
                 if (data.respCode == '0000') {
                     Modal.alert("发布成功！", function () {
                         // 清空输入框
@@ -120,13 +120,39 @@ $().ready(function () {
             $(this).css('color', 'black');
         } else if (event.type == "click") {
             var noticeId = $(this).attr('notice_id');
-            window.location.href = "./html/notice.html?notice_id="+noticeId;
+            window.location.href = "./html/notice.html?notice_id=" + noticeId;
         }
     });
 
-   /* window.onbeforeunload = function(){
-        $.session.clear();
-    };*/
+    /* window.onbeforeunload = function(){
+         $.session.clear();
+     };*/
+    // 修改密码模态框
+    $('.modifyPwd').unbind().bind('click', function () {
+        $('#modifyPwd_modal').modal({"closeViaDimmer": false});
+    });
+    $('#modifyPwd_btn').unbind().bind('click', function () {
+        var old_pwd = $.trim($('#old_pwd').val());  // 旧密码
+        var new_pwd = $.trim($('#new_pwd').val());  // 新密码
+        var confirm_pwd = $.trim($('#confirm_pwd').val());  // 确认新密码
+        if (INPUT_UTIL.isNull(old_pwd)) {
+            Modal.alert("旧密码不能为空！");
+            return;
+        }
+        if (INPUT_UTIL.isNull(new_pwd)) {
+            Modal.alert("新密码不能为空！");
+            return;
+        }
+        if (INPUT_UTIL.isNull(confirm_pwd)) {
+            Modal.alert("确认新密码不能为空！");
+            return;
+        }
+        if (new_pwd != confirm_pwd) {
+            Modal.alert("请确保新密码输入一致！");
+            return;
+        }
+        modifyPwd(operNo, old_pwd, new_pwd);
+    });
 });
 
 // 公告列表
@@ -346,7 +372,7 @@ function getAttendance(operNo) {
 }
 
 // 员工关怀
-function staffCare(){
+function staffCare() {
     $.ajax({
         type: "POST",
         url: getStaffListByNowDateUrl,
@@ -361,7 +387,7 @@ function staffCare(){
                 if (data.total > 0) {
                     var str = '<span style="color: #fc7a30;">今天公司下列同事生日,为他们发送您的祝福吧!</span>';
                     $.each(data.staffList, function (i, item) {
-                        str += '<li><div style="font-size:15px;">'+item.staffName+'/'+item.department+'-'+item.job+'</div></li>';
+                        str += '<li><div style="font-size:15px;">' + item.staffName + '/' + item.department + '-' + item.job + '</div></li>';
                     });
                     $('.admin-content-file').html(str);
                     // 分页判断 余数为0时 页数不需要加一
@@ -390,7 +416,7 @@ function staffCare(){
                                         if (data.total > 0) {
                                             var str = '<span style="color: #fc7a30;">今天公司下列同事生日,为他们发送您的祝福吧!</span>';
                                             $.each(data.staffList, function (i, item) {
-                                                str += '<li><div style="font-size:15px;">'+item.staffName+'/'+item.department+'-'+item.job+'</div></li>';
+                                                str += '<li><div style="font-size:15px;">' + item.staffName + '/' + item.department + '-' + item.job + '</div></li>';
                                             });
                                             $('.admin-content-file').html(str);
                                         }
@@ -401,6 +427,33 @@ function staffCare(){
                     })
                 }
             }
+        }
+    });
+}
+
+// 修改工号密码
+function modifyPwd(oper_no, old_pwd, new_pwd) {
+    $.ajax({
+        type: "POST",
+        url: modifyPwdUrl,
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            "operNo": oper_no,
+            "oldPwd": old_pwd,
+            "password": new_pwd
+        },
+        dataType: "json",
+        success: function (data) {
+            if(data.respCode == '0000'){
+                Modal.alert(data.respDesc,function(){
+                    $('#modifyPwd_modal').modal('close');
+                });
+            }else{
+                Modal.alert(data.respDesc);
+            }
+        },
+        error: function () {
+            Modal.alert("修改工号密码AJAX请求失败！");
         }
     });
 }

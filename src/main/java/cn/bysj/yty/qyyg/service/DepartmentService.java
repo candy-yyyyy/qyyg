@@ -24,4 +24,13 @@ public interface DepartmentService {
      * @throws Exception
      */
     JSONObject queryDepartByCondition(String departmentName, String state, Integer pageNo, Integer pageSize) throws Exception;
+
+    /**
+     * @Author
+     * @Description 修改部门状态
+     * @Date 22:47 2019/4/21
+     * @Param [departId, state]
+     * @return com.alibaba.fastjson.JSONObject
+     **/
+    JSONObject updateDepartState(Integer departId,Integer state) throws Exception;
 }

@@ -281,7 +281,7 @@ public class UserServiceImpl implements UserService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         JSONObject rspJson = new JSONObject();
         String hqlStr = " from Staff a where 1=1";
-        hqlStr += " and a.staffBirthday=CURDATE()";
+        hqlStr += " and date_format(a.staffBirthday,'%m-%d') = date_format(CURDATE(),'%m-%d')";
         Query query = em.createQuery(hqlStr);
         int total = query.getResultList().size();
         if (total > 0) {
@@ -374,6 +374,34 @@ public class UserServiceImpl implements UserService {
             }
         } else {
             rspJson.put("total", 0);
+        }
+        return rspJson;
+    }
+
+    @Override
+    @Transactional
+    public JSONObject updatePwd(String operNo,String oldPwd,String password) throws Exception {
+        JSONObject rspJson = new JSONObject();
+        Staff staff = userDao.getStaffInfo(operNo);
+        if(staff == null){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","查询工号信息为空！");
+            return rspJson;
+        }
+        if(!oldPwd.equals(staff.getPassword())){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","旧密码不正确！");
+            return rspJson;
+        }
+        staff.setOperNo(operNo);
+        staff.setPassword(password);
+        int i = userDao.updatePwd(staff);
+        if (i >= 0) {
+            rspJson.put("respCode", "0000");
+            rspJson.put("respDesc", "修改工号密码成功");
+        } else {
+            rspJson.put("respCode", "9999");
+            rspJson.put("respDesc", "修改工号密码失败");
         }
         return rspJson;
     }

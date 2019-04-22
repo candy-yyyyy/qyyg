@@ -232,4 +232,23 @@ public class UserRest {
         }
         return rspJson;
     }
+
+    @RequestMapping(value = UrlMapping.MODIFY_PWD, method = RequestMethod.POST)
+    public JSONObject modifyPwd(String operNo,String oldPwd,String password) {
+        logger.info("修改工号密码====:operNo"+operNo+"==oldPwd:"+oldPwd+"===password"+password);
+        JSONObject rspJson = new JSONObject();
+        if(StringUtils.isEmpty(operNo)){
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","参数operNo不能为空");
+            return rspJson;
+        }
+        try{
+            rspJson = userService.updatePwd(operNo, oldPwd, password);
+        }catch(Exception e){
+            logger.error("修改工号密码异常：",e);
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","修改工号密码异常,请联系系统管理员");
+        }
+        return rspJson;
+    }
 }

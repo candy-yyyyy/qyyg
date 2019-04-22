@@ -16,4 +16,8 @@ public interface DepartmentDao extends JpaRepository<Department, Long> {
 
     @Query(value = "select * from t_department where department_name=?1", nativeQuery = true)
     Department getDepartmentByDepartName(String departName);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update t_department set state=?2 where department_id=?1", nativeQuery = true)
+    int updateDepartState(Integer departId,Integer state);
 }

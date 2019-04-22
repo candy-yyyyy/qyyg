@@ -62,4 +62,13 @@ public class UrlMapping {
 
     // 查询当天生日的员工
     public static final String GET_STAFF_NOW_DATE = "getStaffListByNowDate";
+
+    // 修改工号密码
+    public static final String MODIFY_PWD = "modifyPwd";
+
+    // 修改工种状态
+    public static final String UPDATE_JOB_STATE = "updateJobState";
+
+    // 修改部门状态
+    public static final String UPDATE_DEPART_STATE = "updateDepartState";
 }

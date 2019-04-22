@@ -46,4 +46,13 @@ public interface UserService {
      * @throws Exception
      */
     JSONObject getStaffListByNowDate(int pageNo,int pageSize) throws Exception;
+
+    /**
+     * @Author
+     * @Description 修改工号密码
+     * @Date 16:06 2019/4/21
+     * @Param [operNo, password]
+     * @return com.alibaba.fastjson.JSONObject
+     **/
+    JSONObject updatePwd(String operNo,String oldPwd,String password) throws Exception;
 }

@@ -64,4 +64,19 @@ public class JobServiceImpl implements JobService {
         }
         return rspJson;
     }
+
+    @Override
+    @Transactional
+    public JSONObject updateJobState(Integer jobId, Integer state) {
+        JSONObject rspJson = new JSONObject();
+        int flag = jobDao.updateJobState(jobId, state);
+        if(flag>0){
+            rspJson.put("respCode","0000");
+            rspJson.put("respDesc","修改工种状态成功！");
+        }else{
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","修改工种狀態失败！");
+        }
+        return rspJson;
+    }
 }

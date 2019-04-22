@@ -63,4 +63,18 @@ public class DepartmentRest {
         }
         return rspJson;
     }
+
+    @RequestMapping(value = UrlMapping.UPDATE_DEPART_STATE, method = RequestMethod.POST)
+    public JSONObject updateDepartState(Integer departId,Integer state) {
+        JSONObject rspJson = new JSONObject();
+        try{
+            rspJson = departmentService.updateDepartState(departId, state);
+        }catch(Exception e){
+            logger.error("修改部门状态异常：",e);
+            rspJson = new JSONObject();
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","修改部门状态异常");
+        }
+        return rspJson;
+    }
 }

@@ -23,4 +23,13 @@ public interface JobService {
      * @throws Exception
      */
     JSONObject qryJobByCondition(String jobName,String state, Integer pageNo, Integer pageSize) throws Exception;
+
+    /**
+     * @Author
+     * @Description 修改工种状态
+     * @Date 19:12 2019/4/21
+     * @Param [jobId, state]
+     * @return com.alibaba.fastjson.JSONObject
+     **/
+    JSONObject updateJobState(Integer jobId,Integer state);
 }

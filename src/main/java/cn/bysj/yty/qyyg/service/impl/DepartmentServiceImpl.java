@@ -64,4 +64,19 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         return rspJson;
     }
+
+    @Override
+    @Transactional
+    public JSONObject updateDepartState(Integer departId, Integer state) throws Exception {
+        JSONObject rspJson = new JSONObject();
+        int flag = departmentDao.updateDepartState(departId, state);
+        if(flag>0){
+            rspJson.put("respCode","0000");
+            rspJson.put("respDesc","修改部门状态成功！");
+        }else{
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","修改部门状态失败！");
+        }
+        return rspJson;
+    }
 }

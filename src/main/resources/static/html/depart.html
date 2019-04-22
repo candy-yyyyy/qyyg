@@ -8,11 +8,11 @@
     <meta name="keywords" content="table">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="../assets/css/admin.css">
-    <link href="../css/main.css" rel="stylesheet" />
+    <link href="../css/main.css" rel="stylesheet"/>
     <script src="../js/common/all.js"></script>
     <script src="../assets/js/amazeui.min.js"></script>
     <script src="../js/common/paging.js"></script>
@@ -29,7 +29,9 @@
             <div class="am-u-sm-12 am-u-md-6">
                 <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                        <button type="button" class="am-btn am-btn-default" id="depart_add_btn"><span class="am-icon-plus"></span> 新增</button>
+                        <button type="button" class="am-btn am-btn-default" id="depart_add_btn"><span
+                                class="am-icon-plus"></span> 新增
+                        </button>
                     </div>
                 </div>
             </div>
@@ -53,7 +55,11 @@
                 <table class="am-table am-table-striped am-table-hover table-main">
                     <thead>
                     <tr>
-                        <th class="table-author am-hide-sm-only">部门名称</th><th class="table-date am-hide-sm-only">部门经理</th><th class="table-date am-hide-sm-only">部门描述</th><th class="table-date am-hide-sm-only">状态</th>
+                        <th class="table-author am-hide-sm-only">部门名称</th>
+                        <th class="table-date am-hide-sm-only">部门经理</th>
+                        <th class="table-date am-hide-sm-only">部门描述</th>
+                        <th class="table-date am-hide-sm-only">状态</th>
+                        <th class="table-set" style="width:10%;">操作</th>
                     </tr>
                     </thead>
                     <tbody id="departInfoList">
@@ -64,7 +70,7 @@
                     <span>共 <span id="total"></span> 条记录</span>
                     <div id="page" class="page_div"></div>
                 </div>
-                <hr />
+                <hr/>
             </div>
 
         </div>
@@ -79,19 +85,21 @@
         <div class="am-modal-bd">
             <div class="staff_detail_div">
                 部门名称：
-                <input type="text" id="depart_name_add" class="staff_detail_input" />
+                <input type="text" id="depart_name_add" class="staff_detail_input"/>
             </div>
             <div class="staff_detail_div">
                 部门经理：
-                <select data-am-selected="{btnSize: 'sm',maxHeight: 200}" id="depart_manager_add" class="staff_detail_input">
+                <select data-am-selected="{btnSize: 'sm',maxHeight: 200}" id="depart_manager_add"
+                        class="staff_detail_input">
                 </select>
             </div>
             <div class="staff_detail_div">
                 部门描述：
-                <input type="text" id="depart_desc_add" class="staff_detail_input" />
+                <input type="text" id="depart_desc_add" class="staff_detail_input"/>
             </div>
             <div class="staff_detail_div">
-                <button type="button" class="am-btn am-btn-primary" id="departAddBtn" style="margin-right: 20%;">确认</button>
+                <button type="button" class="am-btn am-btn-primary" id="departAddBtn" style="margin-right: 20%;">确认
+                </button>
             </div>
         </div>
     </div>

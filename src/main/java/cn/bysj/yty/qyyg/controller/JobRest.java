@@ -70,4 +70,18 @@ public class JobRest {
         }
         return rspJson;
     }
+
+    @RequestMapping(value = UrlMapping.UPDATE_JOB_STATE, method = RequestMethod.POST)
+    public JSONObject updateJobState(Integer jobId, Integer state) {
+        JSONObject rspJson = new JSONObject();
+        try{
+            rspJson = jobService.updateJobState(jobId, state);
+        }catch(Exception e){
+            logger.error("修改工种状态异常：",e);
+            rspJson = new JSONObject();
+            rspJson.put("respCode","9999");
+            rspJson.put("respDesc","修改工种状态异常");
+        }
+        return rspJson;
+    }
 }

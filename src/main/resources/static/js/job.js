@@ -18,6 +18,62 @@ $().ready(function () {
         };
         addJob(paramJson);
     });
+    // 失效
+    $('#jobInfoList').on('click', '.staff_unable_btn', function () {
+        var job_id = $(this).parent().parent().parent().siblings('.job').attr("jobId");
+        Modal.confirm("确认修改工种状态？", function () {
+            $.ajax({
+                type: "POST",
+                url: updateJobStateUrl,
+                contentType: "application/x-www-form-urlencoded",
+                data: {
+                    jobId: job_id,
+                    state: 1
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.respCode == '0000') {
+                        Modal.alert("工种失效成功!", function () {
+                            $('#searchBtn').trigger('click');
+                        });
+                    } else {
+                        Modal.alert(data.respDesc);
+                    }
+                },
+                error: function () {
+                    Modal.alert("工种失效AJAX请求失败！");
+                }
+            });
+        })
+    });
+    // 生效
+    $('#jobInfoList').on('click', '.staff_able_btn', function () {
+        var job_id = $(this).parent().parent().parent().siblings('.job').attr("jobId");
+        Modal.confirm("确认修改工种状态？", function () {
+            $.ajax({
+                type: "POST",
+                url: updateJobStateUrl,
+                contentType: "application/x-www-form-urlencoded",
+                data: {
+                    jobId: job_id,
+                    state: 0
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.respCode == '0000') {
+                        Modal.alert("工种生效成功!", function () {
+                            $('#searchBtn').trigger('click');
+                        });
+                    } else {
+                        Modal.alert(data.respDesc);
+                    }
+                },
+                error: function () {
+                    Modal.alert("工种生效AJAX请求失败！");
+                }
+            });
+        })
+    });
 
 });
 
@@ -50,7 +106,14 @@ function getJobList(jobName, state) {
                         } else if (item.state == 1) {
                             item.state = '失效';
                         }
-                        jobHtml += "<tr><td>" + item.jobName + "</td><td>" + item.jobDesc + "</td><td>" + item.state + "</td></tr>"
+                        jobHtml += "<tr><td class='job' jobId='"+item.jobId+"'>" + item.jobName + "</td><td>" + item.jobDesc + "</td><td>" + item.state + "</td><td>" +
+                            '<div class="am-btn-toolbar">\n' +
+                            '<div class="am-btn-group am-btn-group-xs">\n' +
+                            '<button class="am-btn am-btn-default am-btn-xs am-text-danger staff_able_btn" style="color:#49acdd;"><span class="am-icon-wrench" style="color:#49acdd;"></span> 生效</button>\n' +
+                            '<button class="am-btn am-btn-default am-btn-xs am-text-danger staff_unable_btn" style="color:#dd514c;"><span class="am-icon-trash-o" style="color:#dd514c;"></span> 失效</button>\n' +
+                            '</div>\n' +
+                            '</div>\n' +
+                            '</td></tr>';
                     });
                     $('#jobInfoList').html(jobHtml);
                     // 分页判断 余数为0时 页数不需要加一
@@ -86,7 +149,14 @@ function getJobList(jobName, state) {
                                             } else if (item.state == 1) {
                                                 item.state = '失效';
                                             }
-                                            jobHtml += "<tr><td>" + item.jobName + "</td><td>" + item.jobDesc + "</td><td>" + item.state + "</td></tr>"
+                                            jobHtml += "<tr><td>" + item.jobName + "</td><td>" + item.jobDesc + "</td><td>" + item.state + "</td><td>" +
+                                                '<div class="am-btn-toolbar">\n' +
+                                                '<div class="am-btn-group am-btn-group-xs">\n' +
+                                                '<button class="am-btn am-btn-default am-btn-xs am-text-danger staff_able_btn" style="color:#49acdd;"><span class="am-icon-wrench" style="color:#49acdd;"></span> 生效</button>\n' +
+                                                '<button class="am-btn am-btn-default am-btn-xs am-text-danger staff_unable_btn" style="color:#dd514c;"><span class="am-icon-trash-o" style="color:#dd514c;"></span> 失效</button>\n' +
+                                                '</div>\n' +
+                                                '</div>\n' +
+                                                '</td></tr>';
                                         });
                                         $('#jobInfoList').html(jobHtml);
                                     }
