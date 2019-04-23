@@ -111,6 +111,7 @@ public class UserServiceImpl implements UserService {
             } else {
                 staffJson.put("education", "");
             }
+            staffJson.put("roleId", staff.getRoleId() == null ? "" : staff.getRoleId());
             return staffJson;
         }
         return null;
@@ -380,17 +381,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public JSONObject updatePwd(String operNo,String oldPwd,String password) throws Exception {
+    public JSONObject updatePwd(String operNo, String oldPwd, String password) throws Exception {
         JSONObject rspJson = new JSONObject();
         Staff staff = userDao.getStaffInfo(operNo);
-        if(staff == null){
-            rspJson.put("respCode","9999");
-            rspJson.put("respDesc","查询工号信息为空！");
+        if (staff == null) {
+            rspJson.put("respCode", "9999");
+            rspJson.put("respDesc", "查询工号信息为空！");
             return rspJson;
         }
-        if(!oldPwd.equals(staff.getPassword())){
-            rspJson.put("respCode","9999");
-            rspJson.put("respDesc","旧密码不正确！");
+        if (!oldPwd.equals(staff.getPassword())) {
+            rspJson.put("respCode", "9999");
+            rspJson.put("respDesc", "旧密码不正确！");
             return rspJson;
         }
         staff.setOperNo(operNo);

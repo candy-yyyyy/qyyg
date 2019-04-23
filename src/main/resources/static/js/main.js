@@ -1,3 +1,4 @@
+var role_id = "";   // 角色id 1：员工    2：管理员
 $().ready(function () {
     var userName = $.session.get('userName');
     var operNo = $.session.get('operNo');
@@ -32,6 +33,7 @@ $().ready(function () {
     getNoticeListInfo();
     getMessageListInfo(1);
     staffCare();
+    getStaffInfo(operNo);
 
     $('#messageBtn').unbind('click').bind('click', function () {
         var messageText = $('#messageText').val();
@@ -454,6 +456,32 @@ function modifyPwd(oper_no, old_pwd, new_pwd) {
         },
         error: function () {
             Modal.alert("修改工号密码AJAX请求失败！");
+        }
+    });
+}
+
+// 查询工号信息
+function getStaffInfo(operNo){
+    $.ajax({
+        type: "POST",
+        url: getStaffInfoUrl,
+        contentType:"application/x-www-form-urlencoded",
+        //contentType: "application/json; charset=utf-8",
+        data: {
+            operNo:operNo
+        },
+        dataType: "json",
+        success: function(data){
+            if(data.respCode=='0000'){
+                role_id = data.staffInfo.roleId;
+                $.session.set("roleId",role_id);
+                // 角色菜单展示
+                if(role_id == 1){   // 一般员工不展示 工号管理、部门管理、系统管理
+                    $('#stafffManage,#systemManage,#departManage,#createNotice').hide();
+                }
+            }else{
+                Modal.alert("",data.respDesc);
+            }
         }
     });
 }
