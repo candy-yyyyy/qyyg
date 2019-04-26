@@ -23,10 +23,10 @@ public class SalaryServiceImpl implements SalaryService {
         JSONObject rspJson = new JSONObject();
         String hqlStr = " from Salary a where 1=1 and a.operNo='"+operNo+"'";
         if(!StringUtils.isEmpty(startMonth)){
-            hqlStr += " and str_to_date(a.yearMonth,'%Y-%m')>=str_to_date('"+startMonth+"','%Y-%m')";
+            hqlStr += " and str_to_date(concat(a.yearMonth,'-01'),'%Y-%m-%d')>=str_to_date(concat('"+startMonth+"','-01'),'%Y-%m-%d')";
         }
         if(!StringUtils.isEmpty(endMonth)){
-            hqlStr += " and str_to_date(a.yearMonth,'%Y-%m')<=str_to_date('"+endMonth+"','%Y-%m')";
+            hqlStr += " and str_to_date(concat(a.yearMonth,'-01'),'%Y-%m-%d')<=str_to_date(concat('"+endMonth+"','-01'),'%Y-%m-%d')";
         }
         Query query = em.createQuery(hqlStr);
         int total = query.getResultList().size();

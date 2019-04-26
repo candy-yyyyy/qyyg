@@ -71,6 +71,9 @@ $().ready(function(){
                                 });
                             }
                         })
+                    }else{
+                        $('#salaryInfoList').html("");
+                        $('#total').text("0");
                     }
                 }else{
                     Modal.alert(data.respDesc);
